@@ -20,5 +20,6 @@ public class StaticMain {
 		}
 		System.out.println(sha256TextHash);
 		
+		
 	}
 }
