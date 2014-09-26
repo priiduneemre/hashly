@@ -5,6 +5,7 @@ public class GeneralConst {
 	public static final String ENCODING_ASCII = "ASCII";
 	public static final String ENCODING_UTF8 = "UTF-8";
 	public static final String ENCODING_UTF16 = "UTF-16";
+	public static final String ENCODING_UTF32 = "UTF-32";
 	
 	public static final String ALGORITHM_MD2 = "MD2";
 	public static final String ALGORITHM_MD5 = "MD5";
