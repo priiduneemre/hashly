@@ -19,5 +19,6 @@ public class StaticMain {
 			e.printStackTrace();
 		}
 		System.out.println(sha256TextHash);
+		
 	}
 }
