@@ -36,6 +36,7 @@ DROP DATABASE IF EXISTS HASHLY;
 CREATE TABLE ALGORITHM (
 	ALGORITHM_ID			SERIAL,
 	NAME					VARCHAR(10)		NOT NULL,
+	DESIGNER_NAME			VARCHAR(255)	NOT	NULL,
 	DIGEST_LENGTH_BITS		INTEGER			NOT NULL,
 	DESCRIPTION				TEXT			NOT NULL,
 	
@@ -56,6 +57,18 @@ CREATE TABLE GUEST (
 	CONSTRAINT CHK_GUEST_VISIT_COUNT_IN_RANGE CHECK (VISIT_COUNT > 0)
 );
 
+CREATE TABLE FILE_TYPE (
+	FILE_TYPE_ID			SERIAL,
+	EXTENSION				VARCHAR(15)		NOT NULL,
+	LABEL					VARCHAR(255)	NOT	NULL,
+	
+	CONSTRAINT PK_FILE_TYPE PRIMARY KEY (FILE_TYPE_ID),
+	CONSTRAINT AK_FILE_TYPE_EXTENSION UNIQUE (EXTENSION),
+	CONSTRAINT AK_FILE_TYPE_LABEL UNIQUE (LABEL),
+	
+	CONSTRAINT CHK_FILE_TYPE_EXTENSION_VALID CHECK (EXTENSION ~* '^(\.).+$')	
+);
+
 CREATE TABLE SOURCE_TEXT (
 	SOURCE_TEXT_ID			SERIAL,
 	CONTENTS				TEXT			NOT NULL,
@@ -65,11 +78,12 @@ CREATE TABLE SOURCE_TEXT (
 
 CREATE TABLE SOURCE_FILE (
 	SOURCE_FILE_ID			SERIAL,
+	FILE_TYPE_ID			INTEGER			NOT NULL,
 	FILENAME				VARCHAR(400)	NOT NULL,
-	EXTENSION				VARCHAR(15)		NOT NULL,
-	SIZE_BYTES				BIGINT			NOT NULL,
+	SIZE_BYTES				BIGINT			NOT NULL	DEFAULT 0,
 	
 	CONSTRAINT PK_SOURCE_FILE PRIMARY KEY (SOURCE_FILE_ID),
+	CONSTRAINT FK_SOURCE_FILE_FILE_TYPE_ID FOREIGN KEY (FILE_TYPE_ID) REFERENCES FILE_TYPE (FILE_TYPE_ID) ON UPDATE CASCADE,
 	
 	CONSTRAINT CHK_SOURCE_FILE_SIZE_BYTES_IN_RANGE CHECK (SIZE_BYTES >= 0),
 );
@@ -114,6 +128,7 @@ CREATE TABLE RESULT_BUNDLE (
 	
 	CONSTRAINT PK_RESULT_BUNDLE PRIMARY KEY (RESULT_BUNDLE_ID),
 	CONSTRAINT AK_RESULT_BUNDLE_PERMACODE UNIQUE (PERMACODE),
+	CONSTRAINT FK_RESULT_BUNDLE_GUEST_ID FOREIGN KEY (GUEST_ID) REFERENCES GUEST (GUEST_ID),
 	
 	CONSTRAINT CHK_RESULT_BUNDLE_PERMACODE_VALID CHECK (PERMACODE ~* '^([0-9]|[a-z])*$'),
 	CONSTRAINT CHK_RESULT_BUNDLE_VIEW_COUNT_IN_RANGE CHECK (VIEW_COUNT >= 0)
@@ -158,6 +173,7 @@ CREATE TABLE ENTITY_TYPE(
 /*2.2 Removal statements*/
 DROP TABLE IF EXISTS ALGORITHM CASCADE;
 DROP TABLE IF EXISTS GUEST CASCADE;
+DROP TABLE IF EXISTS FILE_TYPE CASCADE;
 DROP TABLE IF EXISTS SOURCE_TEXT CASCADE;
 DROP TABLE IF EXISTS SOURCE_FILE CASCADE;
 DROP TABLE IF EXISTS DIGEST CASCADE;
@@ -168,21 +184,49 @@ DROP TABLE IF EXISTS EVENT CASCADE;
 DROP TABLE IF EXISTS EVENT_TYPE CASCADE;
 DROP TABLE IF EXISTS ENTITY_TYPE CASCADE;
 
+
 /*3. DDL - Indices*/
 /*3.1 Primary indices (foreign keys etc.)*/
 /*3.1.1 Creation statements*/
-TODO
+CREATE INDEX IDX_SOURCE_FILE_FILE_TYPE_ID ON SOURCE_FILE USING BTREE (FILE_TYPE_ID);
+
+CREATE INDEX IDX_DIGEST_ALGORITHM_ID ON DIGEST USING BTREE (ALGORITHM_ID);
+CREATE INDEX IDX_DIGEST_RESULT_BUNDLE_ID ON DIGEST USING BTREE (RESULT_BUNDLE_ID);
+
+CREATE INDEX IDX_TEXT_DIGEST_SOURCE_TEXT_ID ON TEXT_DIGEST USING BTREE (SOURCE_TEXT_ID);
+
+CREATE INDEX IDX_FILE_DIGEST_SOURCE_FILE_ID ON FILE_DIGEST USING BTREE (SOURCE_FILE_ID);
+
+CREATE INDEX IDX_RESULT_BUNDLE_GUEST_ID ON RESULT_BUNDLE USING BTREE (GUEST_ID);
+
+CREATE INDEX IDX_EVENT_EVENT_TYPE_ID ON EVENT USING BTREE (EVENT_TYPE_ID);
+CREATE INDEX IDX_EVENT_SOURCE_ITEM_ID ON EVENT USING BTREE (SOURCE_ITEM_ID);
+CREATE INDEX IDX_EVENT_ENTITY_TYPE_ID ON EVENT USING BTREE (ENTITY_TYPE_ID);
+CREATE INDEX IDX_EVENT_GUEST_ID ON EVENT USING BTREE (GUEST_ID);
 
 /*3.1.2 Removal statements*/
-TODO
+DROP INDEX IF EXISTS IDX_SOURCE_FILE_FILE_TYPE_ID;
+DROP INDEX IF EXISTS IDX_DIGEST_ALGORITHM_ID;
+DROP INDEX IF EXISTS IDX_DIGEST_RESULT_BUNDLE_ID;
+DROP INDEX IF EXISTS IDX_TEXT_DIGEST_SOURCE_TEXT_ID;
+DROP INDEX IF EXISTS IDX_FILE_DIGEST_SOURCE_FILE_ID;
+DROP INDEX IF EXISTS IDX_RESULT_BUNDLE_GUEST_ID;
+DROP INDEX IF EXISTS IDX_EVENT_EVENT_TYPE_ID;
+DROP INDEX IF EXISTS IDX_EVENT_SOURCE_ITEM_ID;
+DROP INDEX IF EXISTS IDX_EVENT_ENTITY_TYPE_ID;
+DROP INDEX IF EXISTS IDX_EVENT_GUEST_ID;
 
 
-/*3.2 Secondary indices (based on business logic etc.)*/
+/*3.2 Secondary indices (arising from business logic etc.)*/
 /*3.2.1 Creation statements*/
-TODO
+CREATE INDEX IDX_DIGEST_HEX_VALUE ON DIGEST USING BTREE (HEX_VALUE);
+CREATE INDEX IDX_RESULT_BUNDLE_VIEW_COUNT ON RESULT_BUNDLE USING BTREE (VIEW_COUNT);
+CREATE INDEX IDX_EVENT_EVENT_TIME ON EVENT USING BTREE (EVENT_TIME);
 
 /*3.2.2 Removal statements*/
-TODO
+DROP INDEX IF EXISTS IDX_DIGEST_HEX_VALUE;
+DROP INDEX IF EXISTS IDX_RESULT_BUNDLE_VIEW_COUNT;
+DROP INDEX IF EXISTS IDX_EVENT_EVENT_TIME;
 
 
 /*4. DDL - Views*/
@@ -211,9 +255,65 @@ TRUNCATE TABLE EVENT CASCADE;
 
 /*5.2 Reference tables*/
 /*5.2.1 Insertion statements*/
-TODO
+INSERT INTO ALGORITHM(ALGORITHM_ID, NAME, DESIGNER_NAME, DIGEST_LENGTH_BITS, DESCRIPTION) VALUES (1, 'MD2', 'Ronald Linn Rivest', 128, 
+'The MD2 Message-Digest Algorithm is a cryptographic hash function developed by Ronald Rivest in 1989. The algorithm is optimized for 
+8-bit computers. MD2 is specified in RFC 1319. Although MD2 is no longer considered secure, even as of 2014, it remains in use in 
+public key infrastructures as part of certificates generated with MD2 and RSA.');
+INSERT INTO ALGORITHM(ALGORITHM_ID, NAME, DESIGNER_NAME, DIGEST_LENGTH_BITS, DESCRIPTION) VALUES (2, 'MD5', 'Ronald Linn Rivest', 128,
+'The MD5 message-digest algorithm is a widely used cryptographic hash function producing a 128-bit (16-byte) hash value, typically 
+expressed in text format as a 32 digit hexadecimal number. MD5 has been utilized in a wide variety of cryptographic applications, and is 
+also commonly used to verify data integrity. MD5 was designed by Ron Rivest in 1991 to replace an earlier hash function, MD4. The source 
+code in RFC 1321 contains a "by attribution" RSA license.');
+INSERT INTO ALGORITHM(ALGORITHM_ID, NAME, DESIGNER_NAME, DIGEST_LENGTH_BITS, DESCRIPTION) VALUES (3, 'SHA-1', 'National Security Agency', 
+160, 'The SHA-1 algorithm is a cryptographic hash function designed by the United States National Security Agency and is a U.S. Federal 
+Information Processing Standard published by the United States NIST. SHA-1 produces a 160-bit (20-byte) hash value. A SHA-1 hash value is 
+typically rendered as a hexadecimal number, 40 digits long. SHA stands for "secure hash algorithm". The four SHA algorithms are structured 
+differently and are named SHA-0, SHA-1, SHA-2, and SHA-3. SHA-0 is the original version of the 160-bit hash function published in 1993 
+under the name "SHA": it was not adopted by many applications. Published in 1995, SHA-1 is very similar to SHA-0, but alters the original 
+SHA hash specification to correct alleged weaknesses. SHA-2, published in 2001, is significantly different from the SHA-1 hash function. 
+SHA-1 is the most widely used of the existing SHA hash functions, and is employed in several widely used applications and protocols.');
+INSERT INTO ALGORITHM(ALGORITHM_ID, NAME, DESIGNER_NAME, DIGEST_LENGTH_BITS, DESCRIPTION) VALUES (4, 'SHA-256', 'National Security 
+Agency', 256, 'The SHA-256 algorithm is a cryptographic hash function designed by the U.S. National Security Agency (NSA) and published in 
+2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). SHA stands for Secure Hash Algorithm. SHA-256 includes a 
+significant number of changes from its predecessor, SHA-1. In 2005, security flaws were identified in SHA-1, namely that a mathematical 
+weakness might exist, indicating that a stronger hash function would be desirable. Although SHA-256 bears some similarity to the SHA-1 
+algorithm, these attacks have not been successfully extended to SHA-256.');
+INSERT INTO ALGORITHM(ALGORITHM_ID, NAME, DESIGNER_NAME, DIGEST_LENGTH_BITS, DESCRIPTION) VALUES (5, 'SHA-384', 'National Security 
+Agency', 384, 'The SHA-384 algorithm is a cryptographic hash function designed by the U.S. National Security Agency (NSA) and published in 
+2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). SHA stands for Secure Hash Algorithm. SHA-384 includes a 
+significant number of changes from its predecessor, SHA-1. In 2005, security flaws were identified in SHA-1, namely that a mathematical 
+weakness might exist, indicating that a stronger hash function would be desirable. Although SHA-384 bears some similarity to the SHA-1 
+algorithm, these attacks have not been successfully extended to SHA-384.');
+INSERT INTO ALGORITHM(ALGORITHM_ID, NAME, DESIGNER_NAME, DIGEST_LENGTH_BITS, DESCRIPTION) VALUES (6, 'SHA-512', 'National Security 
+Agency', 512, 'The SHA-512 algorithm is a cryptographic hash function designed by the U.S. National Security Agency (NSA) and published in 
+2001 by the NIST as a U.S. Federal Information Processing Standard (FIPS). SHA stands for Secure Hash Algorithm. SHA-512 includes a 
+significant number of changes from its predecessor, SHA-1. In 2005, security flaws were identified in SHA-1, namely that a mathematical 
+weakness might exist, indicating that a stronger hash function would be desirable. Although SHA-512 bears some similarity to the SHA-1 
+algorithm, these attacks have not been successfully extended to SHA-512.');
+
+INSERT INTO FILE_TYPE(FILE_TYPE_ID, EXTENSION, LABEL) VALUES (1, '.doc', 'Microsoft Word Document');
+
+INSERT INTO EVENT_TYPE(EVENT_TYPE_ID, CODE, LABEL) VALUES (1, 'CREATED', 'Item created');
+INSERT INTO EVENT_TYPE(EVENT_TYPE_ID, CODE, LABEL) VALUES (1, 'MODIFIED', 'Item modified');
+INSERT INTO EVENT_TYPE(EVENT_TYPE_ID, CODE, LABEL) VALUES (1, 'DELETED', 'Item deleted');
+INSERT INTO EVENT_TYPE(EVENT_TYPE_ID, CODE, LABEL) VALUES (1, 'WEBAPP_REQUESTED', 'Guest session started');
+INSERT INTO EVENT_TYPE(EVENT_TYPE_ID, CODE, LABEL) VALUES (1, 'PERMALINK_REQUESTED', 'Permalink viewed');
+
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (1, 'ALGORITHM', 'Algorithm'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (2, 'GUEST', 'Guest'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (3, 'FILE_TYPE', 'File type'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (4, 'SOURCE_TEXT', 'Source text'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (5, 'SOURCE_FILE', 'Source file'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (6, 'DIGEST', 'Digest'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (7, 'TEXT_DIGEST', 'Text-based digest'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (8, 'FILE_DIGEST', 'File-based digest'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (9, 'RESULT_BUNDLE', 'Result bundle'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (10, 'EVENT', 'Event'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (11, 'EVENT_TYPE', 'Event type'); 
+INSERT INTO ENTITY_TYPE(ENTITY_TYPE_ID, CODE, LABEL) VALUES (12, 'ENTITY_TYPE', 'Entity type'); 
 
 /*5.2.2 Deletion statements*/
 TRUNCATE TABLE ALGORITHM CASCADE;
+TRUNCATE TABLE FILE_TYPE CASCADE;
 TRUNCATE TABLE EVENT_TYPE CASCADE;
 TRUNCATE TABLE ENTITY_TYPE CASCADE;
