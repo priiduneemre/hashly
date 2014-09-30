@@ -1,4 +1,10 @@
-2014-09-28 11:38:52
+
+/*Project: 			hashly*/
+/*File description: An arbitrary text file (.txt) for assessing the application's file hashing capabilities.*/
+/*Author:			Priidu Neemre (priidu@neemre.com)*/
+/*Last modified: 	2014-09-28 14:02:15*/
+
+
 -------------------------
 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud 

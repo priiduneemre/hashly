@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<version>1.0.0</version>
 	<name>hashly</name>
-	<description>Webapp w/ a REST API that generates hashes (MDx, SHA-x etc.) for inputted string/file values</description>
+	<description>Webapp w/ public REST API that computes hashes (MDx, SHA-x etc.) for inputted files/texts</description>
 		
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
