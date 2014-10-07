@@ -1,370 +1,370 @@
 ﻿
-/*Project:		hashly*/
-/*File description:	A list of file formats currently recognized by the application. To automatically parse this data 
-                        into a handy batch of (individual) SQL INSERT statements, run the 'file_types2sql.py' script.*/
-/*Author:		Priidu Neemre (priidu@neemre.com)*/
-/*Last modified:	2014-10-07 16:57:46*/
+/*Project:          hashly*/
+/*File description: A list of file formats currently recognized by the application. To automatically parse this data 
+                    into a handy batch of (individual) SQL INSERT statements, run the 'file_types2sql.py' script.*/
+/*Author:           Priidu Neemre (priidu@neemre.com)*/
+/*Last modified:    2014-10-07 16:57:46*/
 
 
-.3dm			OpenNURBS Initiative 3D model
-.3ds			3ds Max scene file (legacy)
-.3g2			3GPP2 multimedia file
-.3gp			3GPP multimedia file
-.7z				7-Zip compressed archive
-.accdb			Microsoft Access database
-.accde			Microsoft Access database (execute only)
-.accdr			Microsoft Access database (read-only)
-.accdt			Microsoft Access database template
-.ace			ACE compressed archive
-.adb			Ada source code file (body)
-.ads			Ada source code file (specification)
-.ai				Adobe Illustrator Artwork
-.aif			Audio Interchange File Format
-.aiff			Audio Interchange File Format
-.apk			Android software package
-.app			Mac OS X application
-.as				ActionScript source code file
-.asf			Advanced Systems Format file
-.asm			Assembly source code file
-.asp			Active Server Page
-.aspx			Active Server Page (.NET)
-.asx			Advanced Stream Redirector file
-.au				Basic audio file
-.avi			Audio Video Interleaved file
-.bak			Backup file (generic)
-.bat			Batch file (MS-DOS)
-.bin			Binary disc image
-.bmp			Bitmap image file
-.bup			Backup file (generic)
-.c				C/C++ source code file
-.cab			Cabinet compressed archive
-.cbl			COBOL source code file
-.cbr			Comic Book Archive
-.cda			CD audio track shortcut
-.cdl			CADKEY Design Language file
-.cdr			CorelDRAW image file
-.cer			Internet Security Certificate
-.cfg			Configuration file (generic)
-.cfm			ColdFusion Markup Language file
-.cfml			ColdFusion Markup Language file
-.cgi			Common Gateway Interface script file
-.chm			Microsoft Compiled HTML Help
-.class			Java compiled file
-.clj			Clojure source code file
-.com			Command file (MS-DOS)
-.cpl			Control Panel Applet
-.cpp			C++ source code file
-.crdownload		Google Chrome/Chromium partially downloaded file
-.crx			Google Chrome/Chromium extension
-.cs				C# source code file
-.csk			ClarisWorks document (Windows)
-.csr			Certificate Signing Request
-.css			Cascading Style Sheet
-.csv			Comma-Separated Values file
-.cue			Cue sheet file
-.cur			Windows Cursor Image
-.cvs			Canvas image file
-.d				D source code file
-.dart			Dart source code file
-.dat			Data file (generic)
-.db				Database file (generic)
-.dbf			Database file (generic)
-.dcu			Delphi compiled file
-.dds			DirectDraw Surface file
-.deb			Debian software package
-.dem			Video game demo file (generic)
-.deskthemepack	Windows 8 desktop theme pack
-.dif			Data Interchange Format file
-.diff			Difference file (generic)
-.disc			Roxio Toast document
-.divx			DivX-encoded multimedia file
-.dll			Dynamic Link Library
-.dmg			Apple disk image
-.dmp			Windows memory dump
-.doc			Microsoft Word document (legacy)
-.docb			Microsoft Word binary document
-.docm			Microsoft Word document (macro-enabled)
-.docx			Microsoft Word document
-.dot			Microsoft Word document template (legacy)
-.dotm			Microsoft Word document template (macro-enabled)
-.dotx			Microsoft Word document template
-.drv			Driver file (generic)
-.dss			Digital Speech Standard audio file
-.dtd			Document Type Definition file
-.dvf			Sony Digital Voice File
-.dwg			AutoCAD Drawing Database file
-.dxf			AutoCAD Drawing Exchange Format file
-.eml			Email message file (generic)
-.eps			Encapsulated PostScript file
-.erl			Erlang source code file
-.err			Error log file (generic)
-.exe			Executable file (Windows)
-.f				Fortran source code file
-.fla			Adobe Flash animation
-.flv			Flash Video file
-.fm3			Lotus 1-2-3 spreadsheet formatting
-.fnt			Font file (Windows)
-.fon			Font file (legacy, Windows)
-.fs				F# source code file
-.fsx			F# source code file (script)
-.gadget			Windows gadget
-.gam			Video game save file (generic)
-.gbr			Gerber design file
-.ged			GEDCOM Genealogy Data file
-.gif			Graphical Interchange Format file
-.gitignore		Git exclusion file
-.go				Go source code file
-.gpx			GPS Exchange Format file
-.groovy			Groovy source code file
-.gz				Gzip compressed archive
-.h				C/C++/Objective-C header file
-.hgignore		Mercurial exclusion file
-.hqx			BinHex 4 compressed archive
-.hrl			Erlang header file
-.hs				Haskell script file
-.htm			Hypertext Markup Language file
-.html			Hypertext Markup Language file
-.ical			iCalendar calendar file
-.icalendar		iCalendar calendar file
-.icns			Apple Icon Image
-.ico			Icon image file
-.ics			iCalendar calendar file
-.iff			Interchange File Format
-.ifo			DVD metadata file
-.img			Disc image (generic)
-.indd			Adobe InDesign document
-.ini			Initialization/configuration file (generic, Windows)
-.iso			ISO-9660 disc image
-.jar			Java compressed archive
-.java			Java source code file
-.jif			JPEG Interchange Format file
-.jpg			JPEG image file
-.js				JavaScript source code file
-.jse			JScript source code file
-.jsp			Java Server Page
-.jtd			Ichitaro 8/9/10/11 document
-.jtt			Ichitaro 8/9/10/11 document
-.key			Software license key file (generic)
-.keychain		Mac OS X keychain file
-.kml			Keyhole Markup Language file
-.kmz			KML compressed archive
-.lib			Library file (generic)
-.lisp			Lisp source code file
-.lnk			File/folder shortcut (Windows)
-.log			Log file (generic)
-.lst			List file (generic)
-.lua			Lua source code file
-.m				MATLAB source code file
-.m3u			Media playlist file
-.m4a			MPEG-4 Audio Layer file
-.m4p			iTunes audio file
-.m4v			iTunes multimedia file
-.mac			MacPaint image file
-.map			Video game map file (generic)
-.max			3ds Max scene file
-.mcd			MathCad document
-.mdb			Microsoft Access database (legacy)
-.mdf			Media Descriptor File
-.mdl			Model file (generic)
-.mid			MIDI audio file
-.midi			MIDI audio file
-.mim			Multi-Purpose Internet Mail Extensions file
-.mime			Multi-Purpose Internet Mail Extensions file
-.ml				ML source code file
-.mm				Objective-C++ source code file
-.mov			Apple QuickTime multimedia file
-.mp2			MPEG-1/2 Layer II audio file
-.mp3			MPEG-1/2 Layer III audio file
-.mp4			MPEG-4 multimedia file
-.mpa			MPEG-2 Layer II audio file
-.mpg			MPEG-1/2 multimedia file
-.mpp			Microsoft Project document
-.msg			Microsoft Outlook email message file
-.msi			Windows installer package
-.mswmm			Windows Movie Maker project
-.mtb			MiniTab macro file
-.mtj			MiniTab project
-.nes			Nintendo (N64) ROM image
-.nfo			Information file (generic)
-.oab			Microsoft Offline Address Book
-.obj			Wavefront 3D object
-.odb			OpenDocument database
-.odf			OpenDocument formula
-.odg			OpenDocument drawing
-.odm			OpenDocument master document
-.odp			OpenDocument presentation
-.ods			OpenDocument spreadsheet
-.odt			OpenDocument text document
-.ogg			Ogg Vorbis audio file
-.one			Microsoft OneNote document
-.opt			Options file (generic)
-.ost			Microsoft Offline Storage Table
-.otf			OpenType Font
-.otg			OpenDocument drawing template
-.otp			OpenDocument presentation template
-.ots			OpenDocument spreadsheet template
-.ott			OpenDocument text document template
-.oxt			Apache OpenOffice/LibreOffice extension
-.p				Object Pascal source code file
-.pab			Microsoft Personal Address Book
-.pages			Apple Pages document
-.part			Partially downloaded file
-.pas			Delphi source code file
-.pct			Apple Macintosh image file (legacy)
-.pdb			Program database file (generic)
-.pdf			Portable Document Format file
-.php			PHP source code file
-.pif			Program Information File
-.pkg			Apple installer package
-.pl				Perl source code file
-.plugin			Plug-in file (generic)
-.png			Portable Network Graphic
-.pot			Microsoft PowerPoint presentation template (legacy)
-.potm			Microsoft PowerPoint presentation template (macro-enabled)
-.potx			Microsoft PowerPoint presentation template
-.pps			Microsoft PowerPoint slideshow (legacy)
-.ppsm			Microsoft PowerPoint slideshow (macro-enabled)
-.ppsx			Microsoft PowerPoint slideshow
-.ppt			Microsoft PowerPoint presentation (legacy)
-.pptm			Microsoft PowerPoint presentation (macro-enabled)
-.pptx			Microsoft PowerPoint presentation
-.prefs			Preferences file (generic)
-.prf			Microsoft Outlook profile
-.prj			Project file (generic)
-.pro			Prolog source code file
-.project		Project file (generic)
-.properties		Properties/configuration file (generic)
-.ps				PostScript source code file
-.ps1			Windows PowerShell cmdlet
-.psd			Adobe Photoshop Document
-.psp			PaintShop Pro image file (legacy)
-.pspimage		PaintShop Pro image file
-.pst			Microsoft Personal Storage Table
-.ptb			Power Tab project
-.pub			Microsoft Publisher document
-.py				Python script file
-.pyc			Python compiled file
-.qbb			QuickBooks Backup
-.qbw			QuickBooks data file (Windows)
-.qt				Apple QuickTime multimedia file
-.qxd			QuarkXpress Document
-.r				R source code file
-.ra				RealAudio container file
-.ram			RealAudio metadata file
-.rar			WinRAR compressed archive
-.rb				Ruby source code file
-.rm				RealMedia container file
-.rmvb			RealMedia Variable Bitrate container file
-.rom			Read-only memory image (generic)
-.rpm			Red Hat Package Manager software package
-.rs				Rust source code file
-.rss			Rich Site Summary
-.rtf			Rich Text Format document
-.rv				RealVideo container file
-.sav			Video game save file (generic)
-.sb				Scratch project
-.sb2			Scratch 2.0 project
-.scala			Scala source code file
-.scm			Scheme source code file
-.sda			StarOffice Draw project (legacy)
-.sdb			StarOffice Base database (legacy)
-.sdc			StarOffice Calc spreadsheet (legacy)
-.sdd			StarOffice Impress presentation (legacy)
-.sdf			Spatial Data Format file
-.sdw			StarOffice Writer document (legacy)
-.sea			Self-Extracting Archive
-.ses			Session file (generic)
-.settings		Settings file (generic)
-.sh				Shell script file (generic)
-.sit			StuffIt compressed archive
-.sitx			StuffIt X compressed archive
-.sldm			Microsoft PowerPoint slide (macro-enabled)
-.sldx			Microsoft PowerPoint slide
-.sll			Static link library
-.sln			Microsoft Visual Studio solution file
-.smf			StarOffice Math formula (legacy)
-.sql			Structured Query Language file
-.srt			SubRip subtitle file
-.sub			Subtitle file (generic)
-.suo			Microsoft Visual Studio solution user-specific options file
-.svg			Scalable Vector Graphics file
-.swf			Shockwave Flash movie
-.swift			Swift source code file
-.sxc			StarOffice Calc spreadsheet
-.sxd			StarOffice Draw project
-.sxi			StarOffice Impress presentation
-.sxm			StarOffice Math formula
-.sxw			StarOffice Writer document
-.sys			System file (Windows)
-.tar			Tar uncompressed archive
-.tar.gz			Tar/Gzip compressed archive
-.tax			TurboTax document
-.tax2011		TurboTax 2011 document
-.tax2012		TurboTax 2012 document
-.tax2013		TurboTax 2013 document
-.tax2014		TurboTax 2014 document
-.tcl			Tcl source code file
-.tex			TeX source document
-.tga			Truevision Targa image file
-.tgz			Tar/Gzip compressed archive
-.thm			Thumbnail image file
-.tif			Tagged Image File Format
-.tiff			Tagged Image File Format
-.tmp			Temporary file (generic)
-.toast			Roxio Toast disc image
-.torrent		BitTorrent metadata file
-.ttf			TrueType Font
-.txt			Plain text file
-.udf			Universal Disk Format file
-.uof			Uniform Office Format file
-.uop			Uniform Office presentation
-.uos			Uniform Office spreadsheet
-.uot			Uniform Office document
-.uud			Uuencode decoded file
-.uue			Uuencode encoded file
-.v				Verilog source code file
-.vb				Visual Basic/VB.NET source code file
-.vbs			VBScript source code file
-.vcard			vCard contact file
-.vcd			Disc image (generic)
-.vcf			vCard contact file
-.vcxproj		Visual C++ project
-.vhd			VHSIC Hardware Description Language file
-.vhdl			VHSIC Hardware Description Language file
-.vob			DVD Video Object file
-.vsd			Microsoft Visio drawing
-.vst			Microsoft Visio template
-.wadl			Web Application Description Language file
-.wav			Waveform Audio File Format
-.wdb			Microsoft Works database
-.wk3			Lotus 1-2-3 spreadsheet
-.wks			Microsoft Works spreadsheet (legacy)
-.wma			Windows Media audio file
-.wmf			Windows Metafile
-.wmv			Windows Media video file
-.wpd			WordPerfect document
-.wps			Microsoft Works document
-.wsdl			Web Services Description Language file
-.wsf			Windows Script File
-.xcodeproj		Xcode project
-.xhtml			Extensible Hypertext Markup Language file
-.xlm			Microsoft Excel macro (legacy)
-.xlr			Microsoft Works spreadsheet
-.xls			Microsoft Excel spreadsheet (legacy)
-.xlsm			Microsoft Excel spreadsheet (macro-enabled)
-.xlsx			Microsoft Excel spreadsheet
-.xlt			Microsoft Excel spreadsheet template (legacy)
-.xltm			Microsoft Excel spreadsheet template (macro-enabled)
-.xltx			Microsoft Excel spreadsheet template
-.xlw			Microsoft Excel workspace
-.xml			Extensible Markup Language file
-.xsd			XML Schema Definition file
-.xsl			Extensible Stylesheet Language file
-.xslt			Extensible Stylesheet Language Transformations file
-.xsn			Microsoft InfoPath form template file
-.xtm			CmapTools Exported Topic Map
-.yaml			YAML Ain't Markup Language file
-.yml			YAML Ain't Markup Language file
-.yuv			YUV-encoded image file
-.zip			Zip compressed archive
-.zipx			ZipX compressed archive
+.3dm            OpenNURBS Initiative 3D model
+.3ds            3ds Max scene file (legacy)
+.3g2            3GPP2 multimedia file
+.3gp            3GPP multimedia file
+.7z             7-Zip compressed archive
+.accdb          Microsoft Access database
+.accde          Microsoft Access database (execute only)
+.accdr          Microsoft Access database (read-only)
+.accdt          Microsoft Access database template
+.ace            ACE compressed archive
+.adb            Ada source code file (body)
+.ads            Ada source code file (specification)
+.ai             Adobe Illustrator Artwork
+.aif            Audio Interchange File Format
+.aiff           Audio Interchange File Format
+.apk            Android software package
+.app            Mac OS X application
+.as             ActionScript source code file
+.asf            Advanced Systems Format file
+.asm            Assembly source code file
+.asp            Active Server Page
+.aspx           Active Server Page (.NET)
+.asx            Advanced Stream Redirector file
+.au             Basic audio file
+.avi            Audio Video Interleaved file
+.bak            Backup file (generic)
+.bat            Batch file (MS-DOS)
+.bin            Binary disc image
+.bmp            Bitmap image file
+.bup            Backup file (generic)
+.c              C/C++ source code file
+.cab            Cabinet compressed archive
+.cbl            COBOL source code file
+.cbr            Comic Book Archive
+.cda            CD audio track shortcut
+.cdl            CADKEY Design Language file
+.cdr            CorelDRAW image file
+.cer            Internet Security Certificate
+.cfg            Configuration file (generic)
+.cfm            ColdFusion Markup Language file
+.cfml           ColdFusion Markup Language file
+.cgi            Common Gateway Interface script file
+.chm            Microsoft Compiled HTML Help
+.class          Java compiled file
+.clj            Clojure source code file
+.com            Command file (MS-DOS)
+.cpl            Control Panel Applet
+.cpp            C++ source code file
+.crdownload     Google Chrome/Chromium partially downloaded file
+.crx            Google Chrome/Chromium extension
+.cs             C# source code file
+.csk            ClarisWorks document (Windows)
+.csr            Certificate Signing Request
+.css            Cascading Style Sheet
+.csv            Comma-Separated Values file
+.cue            Cue sheet file
+.cur            Windows Cursor Image
+.cvs            Canvas image file
+.d              D source code file
+.dart           Dart source code file
+.dat            Data file (generic)
+.db             Database file (generic)
+.dbf            Database file (generic)
+.dcu            Delphi compiled file
+.dds            DirectDraw Surface file
+.deb            Debian software package
+.dem            Video game demo file (generic)
+.deskthemepack  Windows 8 desktop theme pack
+.dif            Data Interchange Format file
+.diff           Difference file (generic)
+.disc           Roxio Toast document
+.divx           DivX-encoded multimedia file
+.dll            Dynamic Link Library
+.dmg            Apple disk image
+.dmp            Windows memory dump
+.doc            Microsoft Word document (legacy)
+.docb           Microsoft Word binary document
+.docm           Microsoft Word document (macro-enabled)
+.docx           Microsoft Word document
+.dot            Microsoft Word document template (legacy)
+.dotm           Microsoft Word document template (macro-enabled)
+.dotx           Microsoft Word document template
+.drv            Driver file (generic)
+.dss            Digital Speech Standard audio file
+.dtd            Document Type Definition file
+.dvf            Sony Digital Voice File
+.dwg            AutoCAD Drawing Database file
+.dxf            AutoCAD Drawing Exchange Format file
+.eml            Email message file (generic)
+.eps            Encapsulated PostScript file
+.erl            Erlang source code file
+.err            Error log file (generic)
+.exe            Executable file (Windows)
+.f              Fortran source code file
+.fla            Adobe Flash animation
+.flv            Flash Video file
+.fm3            Lotus 1-2-3 spreadsheet formatting
+.fnt            Font file (Windows)
+.fon            Font file (legacy, Windows)
+.fs             F# source code file
+.fsx            F# source code file (script)
+.gadget         Windows gadget
+.gam            Video game save file (generic)
+.gbr            Gerber design file
+.ged            GEDCOM Genealogy Data file
+.gif            Graphical Interchange Format file
+.gitignore      Git exclusion file
+.go             Go source code file
+.gpx            GPS Exchange Format file
+.groovy         Groovy source code file
+.gz             Gzip compressed archive
+.h              C/C++/Objective-C header file
+.hgignore       Mercurial exclusion file
+.hqx            BinHex 4 compressed archive
+.hrl            Erlang header file
+.hs             Haskell script file
+.htm            Hypertext Markup Language file
+.html           Hypertext Markup Language file
+.ical           iCalendar calendar file
+.icalendar      iCalendar calendar file
+.icns           Apple Icon Image
+.ico            Icon image file
+.ics            iCalendar calendar file
+.iff            Interchange File Format
+.ifo            DVD metadata file
+.img            Disc image (generic)
+.indd           Adobe InDesign document
+.ini            Initialization/configuration file (generic, Windows)
+.iso            ISO-9660 disc image
+.jar            Java compressed archive
+.java           Java source code file
+.jif            JPEG Interchange Format file
+.jpg            JPEG image file
+.js             JavaScript source code file
+.jse            JScript source code file
+.jsp            Java Server Page
+.jtd            Ichitaro 8/9/10/11 document
+.jtt            Ichitaro 8/9/10/11 document
+.key            Software license key file (generic)
+.keychain       Mac OS X keychain file
+.kml            Keyhole Markup Language file
+.kmz            KML compressed archive
+.lib            Library file (generic)
+.lisp           Lisp source code file
+.lnk            File/folder shortcut (Windows)
+.log            Log file (generic)
+.lst            List file (generic)
+.lua            Lua source code file
+.m              MATLAB source code file
+.m3u            Media playlist file
+.m4a            MPEG-4 Audio Layer file
+.m4p            iTunes audio file
+.m4v            iTunes multimedia file
+.mac            MacPaint image file
+.map            Video game map file (generic)
+.max            3ds Max scene file
+.mcd            MathCad document
+.mdb            Microsoft Access database (legacy)
+.mdf            Media Descriptor File
+.mdl            Model file (generic)
+.mid            MIDI audio file
+.midi           MIDI audio file
+.mim            Multi-Purpose Internet Mail Extensions file
+.mime           Multi-Purpose Internet Mail Extensions file
+.ml             ML source code file
+.mm             Objective-C++ source code file
+.mov            Apple QuickTime multimedia file
+.mp2            MPEG-1/2 Layer II audio file
+.mp3            MPEG-1/2 Layer III audio file
+.mp4            MPEG-4 multimedia file
+.mpa            MPEG-2 Layer II audio file
+.mpg            MPEG-1/2 multimedia file
+.mpp            Microsoft Project document
+.msg            Microsoft Outlook email message file
+.msi            Windows installer package
+.mswmm          Windows Movie Maker project
+.mtb            MiniTab macro file
+.mtj            MiniTab project
+.nes            Nintendo (N64) ROM image
+.nfo            Information file (generic)
+.oab            Microsoft Offline Address Book
+.obj            Wavefront 3D object
+.odb            OpenDocument database
+.odf            OpenDocument formula
+.odg            OpenDocument drawing
+.odm            OpenDocument master document
+.odp            OpenDocument presentation
+.ods            OpenDocument spreadsheet
+.odt            OpenDocument text document
+.ogg            Ogg Vorbis audio file
+.one            Microsoft OneNote document
+.opt            Options file (generic)
+.ost            Microsoft Offline Storage Table
+.otf            OpenType Font
+.otg            OpenDocument drawing template
+.otp            OpenDocument presentation template
+.ots            OpenDocument spreadsheet template
+.ott            OpenDocument text document template
+.oxt            Apache OpenOffice/LibreOffice extension
+.p              Object Pascal source code file
+.pab            Microsoft Personal Address Book
+.pages          Apple Pages document
+.part           Partially downloaded file
+.pas            Delphi source code file
+.pct            Apple Macintosh image file (legacy)
+.pdb            Program database file (generic)
+.pdf            Portable Document Format file
+.php            PHP source code file
+.pif            Program Information File
+.pkg            Apple installer package
+.pl             Perl source code file
+.plugin         Plug-in file (generic)
+.png            Portable Network Graphic
+.pot            Microsoft PowerPoint presentation template (legacy)
+.potm           Microsoft PowerPoint presentation template (macro-enabled)
+.potx           Microsoft PowerPoint presentation template
+.pps            Microsoft PowerPoint slideshow (legacy)
+.ppsm           Microsoft PowerPoint slideshow (macro-enabled)
+.ppsx           Microsoft PowerPoint slideshow
+.ppt            Microsoft PowerPoint presentation (legacy)
+.pptm           Microsoft PowerPoint presentation (macro-enabled)
+.pptx           Microsoft PowerPoint presentation
+.prefs          Preferences file (generic)
+.prf            Microsoft Outlook profile
+.prj            Project file (generic)
+.pro            Prolog source code file
+.project        Project file (generic)
+.properties     Properties/configuration file (generic)
+.ps             PostScript source code file
+.ps1            Windows PowerShell cmdlet
+.psd            Adobe Photoshop Document
+.psp            PaintShop Pro image file (legacy)
+.pspimage       PaintShop Pro image file
+.pst            Microsoft Personal Storage Table
+.ptb            Power Tab project
+.pub            Microsoft Publisher document
+.py             Python script file
+.pyc            Python compiled file
+.qbb            QuickBooks Backup
+.qbw            QuickBooks data file (Windows)
+.qt             Apple QuickTime multimedia file
+.qxd            QuarkXpress Document
+.r              R source code file
+.ra             RealAudio container file
+.ram            RealAudio metadata file
+.rar            WinRAR compressed archive
+.rb             Ruby source code file
+.rm             RealMedia container file
+.rmvb           RealMedia Variable Bitrate container file
+.rom            Read-only memory image (generic)
+.rpm            Red Hat Package Manager software package
+.rs             Rust source code file
+.rss            Rich Site Summary
+.rtf            Rich Text Format document
+.rv             RealVideo container file
+.sav            Video game save file (generic)
+.sb             Scratch project
+.sb2            Scratch 2.0 project
+.scala          Scala source code file
+.scm            Scheme source code file
+.sda            StarOffice Draw project (legacy)
+.sdb            StarOffice Base database (legacy)
+.sdc            StarOffice Calc spreadsheet (legacy)
+.sdd            StarOffice Impress presentation (legacy)
+.sdf            Spatial Data Format file
+.sdw            StarOffice Writer document (legacy)
+.sea            Self-Extracting Archive
+.ses            Session file (generic)
+.settings       Settings file (generic)
+.sh             Shell script file (generic)
+.sit            StuffIt compressed archive
+.sitx           StuffIt X compressed archive
+.sldm           Microsoft PowerPoint slide (macro-enabled)
+.sldx           Microsoft PowerPoint slide
+.sll            Static link library
+.sln            Microsoft Visual Studio solution file
+.smf            StarOffice Math formula (legacy)
+.sql            Structured Query Language file
+.srt            SubRip subtitle file
+.sub            Subtitle file (generic)
+.suo            Microsoft Visual Studio solution user-specific options file
+.svg            Scalable Vector Graphics file
+.swf            Shockwave Flash movie
+.swift          Swift source code file
+.sxc            StarOffice Calc spreadsheet
+.sxd            StarOffice Draw project
+.sxi            StarOffice Impress presentation
+.sxm            StarOffice Math formula
+.sxw            StarOffice Writer document
+.sys            System file (Windows)
+.tar            Tar uncompressed archive
+.tar.gz         Tar/Gzip compressed archive
+.tax            TurboTax document
+.tax2011        TurboTax 2011 document
+.tax2012        TurboTax 2012 document
+.tax2013        TurboTax 2013 document
+.tax2014        TurboTax 2014 document
+.tcl            Tcl source code file
+.tex            TeX source document
+.tga            Truevision Targa image file
+.tgz            Tar/Gzip compressed archive
+.thm            Thumbnail image file
+.tif            Tagged Image File Format
+.tiff           Tagged Image File Format
+.tmp            Temporary file (generic)
+.toast          Roxio Toast disc image
+.torrent        BitTorrent metadata file
+.ttf            TrueType Font
+.txt            Plain text file
+.udf            Universal Disk Format file
+.uof            Uniform Office Format file
+.uop            Uniform Office presentation
+.uos            Uniform Office spreadsheet
+.uot            Uniform Office document
+.uud            Uuencode decoded file
+.uue            Uuencode encoded file
+.v              Verilog source code file
+.vb             Visual Basic/VB.NET source code file
+.vbs            VBScript source code file
+.vcard          vCard contact file
+.vcd            Disc image (generic)
+.vcf            vCard contact file
+.vcxproj        Visual C++ project
+.vhd            VHSIC Hardware Description Language file
+.vhdl           VHSIC Hardware Description Language file
+.vob            DVD Video Object file
+.vsd            Microsoft Visio drawing
+.vst            Microsoft Visio template
+.wadl           Web Application Description Language file
+.wav            Waveform Audio File Format
+.wdb            Microsoft Works database
+.wk3            Lotus 1-2-3 spreadsheet
+.wks            Microsoft Works spreadsheet (legacy)
+.wma            Windows Media audio file
+.wmf            Windows Metafile
+.wmv            Windows Media video file
+.wpd            WordPerfect document
+.wps            Microsoft Works document
+.wsdl           Web Services Description Language file
+.wsf            Windows Script File
+.xcodeproj      Xcode project
+.xhtml          Extensible Hypertext Markup Language file
+.xlm            Microsoft Excel macro (legacy)
+.xlr            Microsoft Works spreadsheet
+.xls            Microsoft Excel spreadsheet (legacy)
+.xlsm           Microsoft Excel spreadsheet (macro-enabled)
+.xlsx           Microsoft Excel spreadsheet
+.xlt            Microsoft Excel spreadsheet template (legacy)
+.xltm           Microsoft Excel spreadsheet template (macro-enabled)
+.xltx           Microsoft Excel spreadsheet template
+.xlw            Microsoft Excel workspace
+.xml            Extensible Markup Language file
+.xsd            XML Schema Definition file
+.xsl            Extensible Stylesheet Language file
+.xslt           Extensible Stylesheet Language Transformations file
+.xsn            Microsoft InfoPath form template file
+.xtm            CmapTools Exported Topic Map
+.yaml           YAML Ain't Markup Language file
+.yml            YAML Ain't Markup Language file
+.yuv            YUV-encoded image file
+.zip            Zip compressed archive
+.zipx           ZipX compressed archive

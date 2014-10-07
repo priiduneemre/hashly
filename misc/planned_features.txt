@@ -1,8 +1,8 @@
 
-/*Project: 			hashly*/
+/*Project:          hashly*/
 /*File description: A list of features planned for future releases of this software.*/
-/*Author:			Priidu Neemre (priidu@neemre.com)*/
-/*Last modified: 	2014-09-29 19:42:49*/
+/*Author:           Priidu Neemre (priidu@neemre.com)*/
+/*Last modified:    2014-09-29 19:42:49*/
 
 
 -TODO: Add a new domain object named 'AlgorithmType' (& everything else that goes with it). 
