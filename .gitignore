@@ -3,3 +3,4 @@
 /out
 /.classpath
 /src/main/resources/rebel.xml
+/misc/db/file_types.sql
