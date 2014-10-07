@@ -31,7 +31,7 @@ public class Md2Generator implements HashGenerator {
 		InputStream fileInStream = new FileInputStream(new File(filePath));
 		MessageDigest digester = MessageDigest.getInstance(GeneralConst.ALGORITHM_MD2);
 		DigestInputStream digestInStream = new DigestInputStream(fileInStream, digester);
-
+		
 		byte[] buffer = new byte[1024];
 		
 		while(digestInStream.read(buffer) != GeneralConst.END_OF_STREAM_COUNT);
