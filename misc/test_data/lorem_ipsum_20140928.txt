@@ -1,8 +1,8 @@
 
-/*Project: 			hashly*/
+/*Project:          hashly*/
 /*File description: An arbitrary text file (.txt) for assessing the application's file hashing capabilities.*/
-/*Author:			Priidu Neemre (priidu@neemre.com)*/
-/*Last modified: 	2014-09-28 14:02:15*/
+/*Author:           Priidu Neemre (priidu@neemre.com)*/
+/*Last modified:    2014-09-28 14:02:15*/
 
 
 -------------------------
