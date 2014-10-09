@@ -39,12 +39,22 @@
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
+			<artifactId>spring-beans</artifactId>
 			<version>4.1.1.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
-			<artifactId>spring-tx</artifactId>
+			<artifactId>spring-core</artifactId>
+			<version>4.1.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.1.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
 			<version>4.1.1.RELEASE</version>
 		</dependency>
 		<dependency>
@@ -54,8 +64,18 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>4.1.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>4.1.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>9.2-1004-jdbc4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>

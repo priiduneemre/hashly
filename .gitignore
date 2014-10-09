@@ -3,4 +3,5 @@
 /out
 /.classpath
 /src/main/resources/rebel.xml
+/src/main/webapp/WEB-INF/.idea
 /misc/db/file_types.sql
