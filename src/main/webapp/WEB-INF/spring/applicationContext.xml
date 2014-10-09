@@ -23,6 +23,12 @@
 		Spring beans -->
 	<context:component-scan base-package="com.neemre.hashly" />
 
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>/src/main/resources/db.properties</value>
+		</property>
+	</bean>
+
 	<!--Configures InternalResourceViewResolver as the application's view resolver -->
 	<bean id="jspViewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,10 +38,33 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="" />
-		<property name="username" value="priidu_dba" />
-		<property name="password" value="" />
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass" value="${db.driverClass}" />
+		<property name="jdbcUrl" value="${db.jdbcUrl}" />
+		<property name="user" value="${db.user}" />
+		<property name="password" value="${db.password}" />
+		<property name="initialPoolSize" value="${db.initialPoolSize}" />
+		<property name="minPoolSize" value="${db.minPoolSize}" />
+		<property name="maxPoolSize" value="${db.maxPoolSize}" />
+		<property name="unreturnedConnectionTimeout" value="${db.unreturnedConnectionTimeout}" />
+		<property name="acquireIncrement" value="${db.acquireIncrement}" />
+		<property name="autoCommitOnClose" value="${db.autoCommitOnClose}" />
+	</bean>
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="jsonMessageConverter" 
+		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	
+	<bean id="reqMappingAdapter" 
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<ref bean="jsonMessageConverter" />
+			</list>
+		</property>
 	</bean>
 
 	<bean id="loggingAspect" class="com.neemre.hashly.common.aop.LoggingAspect" />
