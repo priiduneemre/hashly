@@ -242,7 +242,11 @@ TODO
 /*5. Management of initial data*/
 /*5.1 Regular tables*/
 /*5.1.1 Insertion statements*/
-TODO
+INSERT INTO guest (guest_id, ip_address, visit_count) VALUES (1, '191.197.107.184', 4);
+INSERT INTO guest (guest_id, ip_address, visit_count) VALUES (2, '127.144.152.194', 1);
+INSERT INTO guest (guest_id, ip_address, visit_count) VALUES (3, '118.254.189.53', 8);
+INSERT INTO guest (guest_id, ip_address, visit_count) VALUES (4, '29.198.17.207', 5);
+INSERT INTO guest (guest_id, ip_address, visit_count) VALUES (5, '97.143.89.22', 24);
 
 /*5.1.2 Deletion statements*/
 TRUNCATE TABLE guest CASCADE;

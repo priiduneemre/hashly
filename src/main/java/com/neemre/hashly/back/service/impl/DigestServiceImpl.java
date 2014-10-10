@@ -1,30 +1,30 @@
-package com.neemre.hashly.back.service.jdbc;
+package com.neemre.hashly.back.service.impl;
 
 import java.util.List;
 
-import com.neemre.hashly.back.domain.Guest;
-import com.neemre.hashly.back.service.GuestService;
+import com.neemre.hashly.back.domain.Digest;
+import com.neemre.hashly.back.service.DigestService;
 
-public class GuestServiceImpl implements GuestService {
+public class DigestServiceImpl implements DigestService {
 
-	public GuestServiceImpl() {
+	public DigestServiceImpl() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public Guest findById(int entityId) {
+	public Digest findById(int entityId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Guest> findAll() {
+	public List<Digest> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Guest create(Guest entity) {
+	public Digest save(Digest entity) {
 		// TODO Auto-generated method stub
 		return null;
 	}

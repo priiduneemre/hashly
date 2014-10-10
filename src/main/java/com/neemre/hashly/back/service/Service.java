@@ -6,11 +6,11 @@ import com.neemre.hashly.back.domain.Entity;
 
 public interface Service<T extends Entity> {
 	
-	public T findById(int entityId);
+	T findById(int entityId);
 	
-	public List<T> findAll();
+	List<T> findAll();
 	
-	public T create(T entity);
+	T save(T entity);
 	
-	public void delete(int entityId);
+	void delete(int entityId);
 }

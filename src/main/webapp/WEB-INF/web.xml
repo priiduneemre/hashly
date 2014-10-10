@@ -47,7 +47,7 @@
 	<!--Map all incoming requests to the GeneralDispatcher servlet for handling -->
 	<servlet-mapping>
 		<servlet-name>GeneralDispatcher</servlet-name>
-		<url-pattern>/**</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
