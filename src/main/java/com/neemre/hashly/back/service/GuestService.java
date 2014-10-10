@@ -1,5 +1,7 @@
 package com.neemre.hashly.back.service;
 
-public interface GuestService extends Service {
+import com.neemre.hashly.back.domain.Guest;
+
+public interface GuestService extends Service<Guest> {
 
 }

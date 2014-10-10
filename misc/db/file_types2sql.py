@@ -19,7 +19,7 @@ INPUT_SHORTOPT = '-i'
 OUTPUT_SHORTOPT = '-o'
 
 TABLE_NAME = 'FILE_TYPE'
-ID_START_WITH = 3
+ID_START_WITH = 1
 EXTENSION_ITEM_INDEX = 0
 LABEL_ITEM_INDEX = 1
 
@@ -61,7 +61,7 @@ def stripSqlComments(targetData):
 def parseRows(targetData):
     targetRows = targetData.split('\n')
     for i in range(0, len(targetRows)):
-        targetRows[i] = re.sub('(\t)+', ',', targetRows[i])
+        targetRows[i] = re.sub('(\s){2,}', '|', targetRows[i])
         targetRows[i] = targetRows[i].strip()
         #Apply PostgreSQL-specific escape sequence ('') to all single quotation marks
         targetRows[i] = targetRows[i].replace('\'', '\'\'')
@@ -69,7 +69,7 @@ def parseRows(targetData):
     return targetRows
 
 def parseRowCells(targetRow):
-    targetCells = targetRow.split(',')
+    targetCells = targetRow.split('|')
     for i in range(0, len(targetCells)):
         targetCells[i] = targetCells[i].strip()
         targetCells[i] = '\'' + targetCells[i] + '\''

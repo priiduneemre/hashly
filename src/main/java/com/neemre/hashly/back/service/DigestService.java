@@ -1,6 +1,8 @@
 package com.neemre.hashly.back.service;
 
-public interface DigestService extends Service {
+import com.neemre.hashly.back.domain.Digest;
+
+public interface DigestService extends Service<Digest> {
 	
 	
 }
