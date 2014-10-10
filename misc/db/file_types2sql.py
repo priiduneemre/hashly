@@ -4,7 +4,7 @@ Project:            hashly*/
 File description:   A script for parsing the file format data stored in 'file_types.csv' into a
                     batch of (individual) SQL INSERT statements.*/
 Author:             Priidu Neemre (priidu@neemre.com)*/
-Last modified:      2014-10-07 20:28:24
+Last modified:      2014-10-10 12:31:44
 """
 
 
@@ -78,13 +78,15 @@ def parseRowCells(targetRow):
 def toInsertStmts(targetRows):
     insertStmts = []
     for i in range(0, len(targetRows)):
-        insertStmts.append('INSERT INTO FILE_TYPE (FILE_TYPE_ID, EXTENSION, LABEL) VALUES ('
+        insertStmts.append('INSERT INTO file_type (file_type_id, extension, label) VALUES ('
                            + str(i + ID_START_WITH) + ', ' + targetRows[i][EXTENSION_ITEM_INDEX]
                            + ', ' + targetRows[i][LABEL_ITEM_INDEX] + ');')
     return insertStmts
 
 def getShellArgs(argv):
     ShellArgs = collections.namedtuple('ShellArg', 'inputFilePath outputFilePath')
+    opts = None
+    args = None
     inputPathTemp = None
     outputPathTemp = None
     try:
