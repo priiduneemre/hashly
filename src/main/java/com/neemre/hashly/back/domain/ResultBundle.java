@@ -9,8 +9,8 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class ResultBundle extends Entity {
 	 
-	private int resultBundleId;
-	private int guestId;
+	private Integer resultBundleId;
+	private Integer guestId;
 	private String permacode;
-	private int viewCount;
+	private Integer viewCount;
 }

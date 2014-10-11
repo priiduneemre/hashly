@@ -9,7 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class Guest extends Entity {
 
-	private int guestId;
+	private Integer guestId;
 	private String ipAddress;
-	private int visitCount;
+	private Integer visitCount;
 }

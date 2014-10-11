@@ -11,10 +11,10 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class Event extends Entity {
 
-	private long eventId;
-	private int eventTypeId;
-	private int sourceItemId;
-	private int entityTypeId;
-	private int guestId;
+	private Long eventId;
+	private Integer eventTypeId;
+	private Integer sourceItemId;
+	private Integer entityTypeId;
+	private Integer guestId;
 	private Date occurredAt;
 }

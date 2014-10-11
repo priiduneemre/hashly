@@ -9,6 +9,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class FileDigest extends Entity {
 	
-	private int digestId;
-	private int sourceFileId;
+	private Integer digestId;
+	private Integer sourceFileId;
 }

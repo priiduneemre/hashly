@@ -9,7 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class EventType extends ReferenceEntity {
 
-	private int eventTypeId;
+	private Integer eventTypeId;
 	private String code;
 	private String label;
 }

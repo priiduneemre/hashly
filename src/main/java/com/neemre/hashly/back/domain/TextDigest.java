@@ -9,6 +9,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class TextDigest extends Entity {
 	
-	private int digestId;
-	private int sourceTextId;
+	private Integer digestId;
+	private Integer sourceTextId;
 }

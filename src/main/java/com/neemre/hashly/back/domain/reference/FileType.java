@@ -9,7 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class FileType extends ReferenceEntity {
 	
-	private int fileTypeId;
+	private Integer fileTypeId;
 	private String extension;
 	private String label;
 }

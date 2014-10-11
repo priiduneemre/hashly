@@ -9,8 +9,8 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class SourceFile extends Entity {
 	
-	private int sourceFileId;
-	private int fileTypeId;
+	private Integer sourceFileId;
+	private Integer fileTypeId;
 	private String filename;
-	private long sizeBytes;
+	private Long sizeBytes;
 }

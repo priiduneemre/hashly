@@ -9,6 +9,6 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class SourceText extends Entity {
 
-	private int sourceTextId;
+	private Integer sourceTextId;
 	private String contents;
 }

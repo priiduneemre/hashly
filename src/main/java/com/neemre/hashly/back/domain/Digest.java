@@ -9,8 +9,8 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = false)
 public class Digest extends Entity {
 	
-	private int digestId;
-	private int	algorithmId;
-	private int resultBundleId;
+	private Integer digestId;
+	private Integer	algorithmId;
+	private Integer resultBundleId;
 	private String hexValue;	
 }
