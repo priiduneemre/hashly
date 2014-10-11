@@ -18,14 +18,12 @@ public class GuestServiceImpl implements GuestService {
 
 	@Override
 	public Guest findById(int guestId) {
-		
 		return guestDao.read(guestId);
 	}
 
 	@Override
 	public List<Guest> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return guestDao.readAll();
 	}
 
 	@Override
