@@ -65,13 +65,11 @@ public class GuestDaoImpl implements GuestDao {
 
 	@Override
 	public void update(Guest guest) {
-		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update(SQL_GUEST_UPDATE);
 	}
 
 	@Override
 	public void delete(int guestId) {
-		// TODO Auto-generated method stub
-		
+		jdbcTemplate.update(SQL_GUEST_DELETE, guestId);
 	}
 }
