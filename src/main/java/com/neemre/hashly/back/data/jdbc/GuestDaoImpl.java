@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -32,7 +33,7 @@ public class GuestDaoImpl implements GuestDao {
 	
 
 	@Override
-	public int create(final Guest guest) {
+	public int create(final Guest guest) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 					public PreparedStatement createPreparedStatement(Connection connection) 
@@ -48,7 +49,7 @@ public class GuestDaoImpl implements GuestDao {
 	}
 
 	@Override
-	public Guest read(int guestId) {
+	public Guest read(int guestId) throws DataAccessException {
 		//TODO: Handle DataAccessException when the resultset comes up empty etc
 		Guest guest = jdbcTemplate.queryForObject(SQL_GUEST_READ, new Object[] {guestId}, 
 				BeanPropertyRowMapper.newInstance(Guest.class));
@@ -56,20 +57,19 @@ public class GuestDaoImpl implements GuestDao {
 	}
 
 	@Override
-	public List<Guest> readAll() {
-		//TODO: Handle DataAccessException when the resultset comes up empty etc
+	public List<Guest> readAll() throws DataAccessException {
 		List<Guest> guests = jdbcTemplate.query(SQL_GUEST_READ_ALL, new Object[] {}, 
 				BeanPropertyRowMapper.newInstance(Guest.class));
 		return guests;
 	}
 
 	@Override
-	public void update(Guest guest) {
+	public void update(Guest guest) throws DataAccessException {
 		jdbcTemplate.update(SQL_GUEST_UPDATE);
 	}
 
 	@Override
-	public void delete(int guestId) {
+	public void delete(int guestId) throws DataAccessException {
 		jdbcTemplate.update(SQL_GUEST_DELETE, guestId);
 	}
 }
