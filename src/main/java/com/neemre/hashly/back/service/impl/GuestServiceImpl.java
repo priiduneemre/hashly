@@ -25,16 +25,24 @@ public class GuestServiceImpl implements GuestService {
 	public List<Guest> findAll() {
 		return guestDao.readAll();
 	}
-
+	
 	@Override
-	public Guest save(Guest entity) {
-		// TODO Auto-generated method stub
-		return null;
+	public Guest addNewGuest(Guest guest) {
+		int newGuestId = guestDao.create(guest);
+		Guest newGuest = guestDao.read(newGuestId);
+		return newGuest;
 	}
 
 	@Override
-	public void delete(int entityId) {
-		// TODO Auto-generated method stub
-		
+	public Guest updateGuestVisitCount(int guestId, int incrementBy) {
+		Guest updatedGuest = guestDao.read(guestId);
+		updatedGuest.setVisitCount(updatedGuest.getVisitCount() + incrementBy);
+		guestDao.update(updatedGuest);
+		return guestDao.read(guestId);
+	}
+
+	@Override
+	public void deleteGuest(int guestId) {
+		guestDao.delete(guestId);
 	}
 }

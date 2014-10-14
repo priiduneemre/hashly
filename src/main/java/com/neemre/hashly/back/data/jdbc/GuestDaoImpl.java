@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.back.data.GuestDao;
 import com.neemre.hashly.back.domain.Guest;
+import com.neerme.hashly.global.ExceptionMessage;
 
 @Repository
 public class GuestDaoImpl implements GuestDao {
@@ -24,8 +26,8 @@ public class GuestDaoImpl implements GuestDao {
 			+ "VALUES (?, ?);";
 	private static final String SQL_GUEST_READ = "SELECT * FROM guest WHERE guest_id = ?;";
 	private static final String SQL_GUEST_READ_ALL = "SELECT * FROM guest;";
-	private static final String SQL_GUEST_UPDATE = "UPDATE guest SET guest_id = ?, ip_address = ?, " + 
-			"visit_count = ?;";
+	private static final String SQL_GUEST_UPDATE = "UPDATE guest SET ip_address = ?, " 
+			+ "visit_count = ?;";
 	private static final String SQL_GUEST_DELETE = "DELETE FROM guest WHERE guest_id = ?;";
 	
 	@Autowired
@@ -50,7 +52,6 @@ public class GuestDaoImpl implements GuestDao {
 
 	@Override
 	public Guest read(int guestId) throws DataAccessException {
-		//TODO: Handle DataAccessException when the resultset comes up empty etc
 		Guest guest = jdbcTemplate.queryForObject(SQL_GUEST_READ, new Object[] {guestId}, 
 				BeanPropertyRowMapper.newInstance(Guest.class));
 		return guest;
@@ -65,11 +66,22 @@ public class GuestDaoImpl implements GuestDao {
 
 	@Override
 	public void update(Guest guest) throws DataAccessException {
-		jdbcTemplate.update(SQL_GUEST_UPDATE);
+		int rowsUpdated = jdbcTemplate.update(SQL_GUEST_UPDATE, new Object[] {guest.getIpAddress(),
+				guest.getVisitCount()});
+		if(rowsUpdated != 1) {
+			throw new IncorrectResultSizeDataAccessException(String.format(
+					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 
+					Guest.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+		}
 	}
 
 	@Override
 	public void delete(int guestId) throws DataAccessException {
-		jdbcTemplate.update(SQL_GUEST_DELETE, guestId);
+		int rowsDeleted = jdbcTemplate.update(SQL_GUEST_DELETE, guestId);
+		if(rowsDeleted != 1) {
+			throw new IncorrectResultSizeDataAccessException(String.format(
+					ExceptionMessage.RECORD_DELETE_INCORRECT_RESULT_SIZE, 1,
+					Guest.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+		}
 	}
 }
