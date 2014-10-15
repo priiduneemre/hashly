@@ -22,31 +22,29 @@ import com.neerme.hashly.global.ExceptionMessage;
 @Repository
 public class GuestDaoImpl implements GuestDao {
 
-	private static final String SQL_GUEST_CREATE = "INSERT INTO guest (ip_address, visit_count) " 
-			+ "VALUES (?, ?);";
+	private static final String SQL_GUEST_CREATE = "INSERT INTO guest (ip_address) VALUES (?);";
 	private static final String SQL_GUEST_READ = "SELECT * FROM guest WHERE guest_id = ?;";
 	private static final String SQL_GUEST_READ_ALL = "SELECT * FROM guest;";
 	private static final String SQL_GUEST_UPDATE = "UPDATE guest SET ip_address = ?, " 
-			+ "visit_count = ?;";
+			+ "visit_count = ? WHERE guest_id = ?;";
 	private static final String SQL_GUEST_DELETE = "DELETE FROM guest WHERE guest_id = ?;";
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
 
 	@Override
 	public int create(final Guest guest) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
-					public PreparedStatement createPreparedStatement(Connection connection) 
-							throws SQLException {
-						PreparedStatement ps = connection.prepareStatement(SQL_GUEST_CREATE, 
-								new String[] {"ip_address", "visist_count"});
-						ps.setString(1, guest.getIpAddress());
-						ps.setInt(2, guest.getVisitCount());
-						return ps;
-					}
-				}, idHolder);
+			public PreparedStatement createPreparedStatement(Connection connection) 
+					throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(SQL_GUEST_CREATE, 
+						new String[] {"guest_id"});
+				ps.setString(1, guest.getIpAddress());
+				return ps;
+			}
+		}, idHolder);
 		return idHolder.getKey().intValue();
 	}
 
@@ -67,7 +65,7 @@ public class GuestDaoImpl implements GuestDao {
 	@Override
 	public void update(Guest guest) throws DataAccessException {
 		int rowsUpdated = jdbcTemplate.update(SQL_GUEST_UPDATE, new Object[] {guest.getIpAddress(),
-				guest.getVisitCount()});
+				guest.getVisitCount(), guest.getGuestId()});
 		if(rowsUpdated != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(
 					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 

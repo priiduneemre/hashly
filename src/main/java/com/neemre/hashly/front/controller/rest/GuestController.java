@@ -36,7 +36,7 @@ public class GuestController {
 	
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
-	public List<GuestDto> getGuests() {
+	public List<GuestDto> getAllGuests() {
 		List<Guest> outGuests = guestService.findAll();
 		List<GuestDto> outGuestDtos = new ArrayList<GuestDto>();
 		DTOAssembler.newAssembler(GuestDto.class, Guest.class).assembleDtos(outGuestDtos, 
