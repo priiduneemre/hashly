@@ -39,8 +39,8 @@ public class GuestController {
 	public List<GuestDto> getGuests() {
 		List<Guest> outGuests = guestService.findAll();
 		List<GuestDto> outGuestDtos = new ArrayList<GuestDto>();
-		DTOAssembler.newAssembler(outGuestDtos.getClass(), outGuests.getClass()).assembleDtos(
-				outGuestDtos, outGuests, null, null);
+		DTOAssembler.newAssembler(GuestDto.class, Guest.class).assembleDtos(outGuestDtos, 
+				outGuests, null, null);
 		return outGuestDtos;
 	}
 	

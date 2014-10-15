@@ -13,6 +13,20 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/applicationContext.xml</param-value>
 	</context-param>
+	<!--Workaround to prevent "NamingException with message: Name [spring.liveBeansView.mbeanDomain] 
+		is not bound in this Context" from being thrown in the DEBUG level output -->	
+	<context-param>
+		<param-name>spring.profiles.active</param-name>
+		<param-value>dev</param-value>
+	</context-param>
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>prod</param-value>
+	</context-param>
+	<context-param>
+		<param-name>spring.liveBeansView.mbeanDomain</param-name>
+		<param-value>dev</param-value>
+	</context-param>
 
 	<filter>
 		<filter-name>CharEncodingFilter</filter-name>
