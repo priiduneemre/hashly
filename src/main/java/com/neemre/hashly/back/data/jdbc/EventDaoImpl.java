@@ -7,16 +7,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 
+import com.neemre.hashly.back.data.EventDao;
 import com.neemre.hashly.back.domain.Event;
-import com.neemre.hashly.back.domain.Guest;
-
-public class EventDaoImpl {
+import com.neerme.hashly.global.ExceptionMessage;
+public class EventDaoImpl implements EventDao {
 
 	private static final String SQL_EVENT_READ = "SELECT * FROM event WHERE event_id = ?";
 	private static final String SQL_EVENT_READ_ALL = "SELECT * FROM event;";
@@ -30,7 +31,8 @@ public class EventDaoImpl {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-
+	
+	@Override
 	public long create(final Event event) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -44,19 +46,43 @@ public class EventDaoImpl {
 				ps.setInt(4, event.getGuestId());
 				return ps;
 			}
-		}, idHolder);
+		}, idHolder); 
 		return idHolder.getKey().longValue();
 	}
 
+	@Override
 	public Event read(int eventId) throws DataAccessException {
 		Event event = jdbcTemplate.queryForObject(SQL_EVENT_READ, new Object[] {eventId}, 
 				BeanPropertyRowMapper.newInstance(Event.class));
 		return event;
 	}
 
+	@Override
 	public List<Event> readAll() throws DataAccessException {
 		List<Event> events = jdbcTemplate.query(SQL_EVENT_READ_ALL, new Object[] {}, 
 				BeanPropertyRowMapper.newInstance(Event.class));
 		return events;
+	}
+	
+	@Override
+	public void update(Event event) throws DataAccessException {
+		int rowsUpdated = jdbcTemplate.update(SQL_EVENT_UPDATE, new Object[]{
+				event.getEventTypeId(), event.getSourceItemId(), event.getEntityTypeId(),
+				event.getGuestId(), event.getEventId()});
+		if(rowsUpdated != 1) {
+			throw new IncorrectResultSizeDataAccessException(String.format(
+					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 
+					Event.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);			
+		}
+	}
+	
+	@Override
+	public void delete(int eventId) throws DataAccessException {
+		int rowsDeleted = jdbcTemplate.update(SQL_EVENT_DELETE, eventId);
+		if(rowsDeleted != 1) {
+			throw new IncorrectResultSizeDataAccessException(String.format(
+					ExceptionMessage.RECORD_DELETE_INCORRECT_RESULT_SIZE, 1,
+					Event.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+		}
 	}
 }

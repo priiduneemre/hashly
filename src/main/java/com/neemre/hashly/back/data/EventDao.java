@@ -1,9 +1,18 @@
 package com.neemre.hashly.back.data;
 
-public class EventDao {
+import java.util.List;
 
-	public EventDao() {
-		// TODO Auto-generated constructor stub
-	}
+import com.neemre.hashly.back.domain.Event;
 
+public interface EventDao {
+	
+	long create(Event event);
+	
+	Event read(int eventId);
+	
+	List<Event> readAll();
+	
+	void update(Event event);
+	
+	void delete(int eventId);
 }
