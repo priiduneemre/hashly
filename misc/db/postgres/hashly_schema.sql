@@ -134,7 +134,7 @@ CREATE TABLE file_digest (
     CONSTRAINT fk_file_digest_source_file_id FOREIGN KEY (source_file_id) REFERENCES source_file (source_file_id) ON DELETE CASCADE
 );
 
-CREATE TABLE event_type(
+CREATE TABLE event_type (
     event_type_id           SMALLSERIAL,
     code                    VARCHAR(30)     NOT NULL,
     label                   VARCHAR(60)     NOT NULL,
@@ -144,7 +144,7 @@ CREATE TABLE event_type(
     CONSTRAINT ak_event_type_label UNIQUE (label)
 );
 
-CREATE TABLE entity_type(
+CREATE TABLE entity_type (
     entity_type_id          SMALLSERIAL,
     code                    VARCHAR(30)     NOT NULL,
     label                   VARCHAR(60)     NOT NULL,
