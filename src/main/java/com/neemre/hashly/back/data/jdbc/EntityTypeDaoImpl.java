@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.back.data.EntityTypeDao;
 import com.neemre.hashly.back.domain.reference.EntityType;
 
+@Repository
 public class EntityTypeDaoImpl implements EntityTypeDao {
 
 	private static final String SQL_ENTITY_TYPE_READ = "SELECT * FROM entity_type WHERE " + 

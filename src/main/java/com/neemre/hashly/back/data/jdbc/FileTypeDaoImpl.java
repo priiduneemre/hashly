@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.back.data.FileTypeDao;
 import com.neemre.hashly.back.domain.reference.FileType;
 
+@Repository
 public class FileTypeDaoImpl implements FileTypeDao {
 
 	private static final String SQL_FILE_TYPE_READ = "SELECT * FROM file_type WHERE " + 

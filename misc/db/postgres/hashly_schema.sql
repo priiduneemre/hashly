@@ -112,7 +112,7 @@ CREATE TABLE digest (
     CONSTRAINT fk_digest_algorithm_id FOREIGN KEY (algorithm_id) REFERENCES algorithm (algorithm_id) ON UPDATE CASCADE,
     CONSTRAINT fk_digest_result_bundle_id FOREIGN KEY (result_bundle_id) REFERENCES result_bundle (result_bundle_id) ON DELETE CASCADE,
     
-    CONSTRAINT chk_digest_hex_value_valid CHECK (hex_value ~* '^([0-9]|[a-e])*$'),
+    CONSTRAINT chk_digest_hex_value_valid CHECK (hex_value ~* '^([0-9]|[a-f])*$'),
     CONSTRAINT chk_digest_hex_value_length CHECK (length(hex_value) > 0)
 );
 

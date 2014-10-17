@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.inspiresoftware.lib.dto.geda.assembler.DTOAssembler;
 import com.neemre.hashly.back.domain.Guest;
 import com.neemre.hashly.back.service.GuestService;
-import com.neemre.hashly.common.dto.GuestDto;
+import com.neemre.hashly.front.dto.GuestDto;
 
 @Controller("guestController")
 @RequestMapping("api/v1/guests")

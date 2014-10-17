@@ -13,10 +13,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.back.data.EventDao;
 import com.neemre.hashly.back.domain.Event;
 import com.neerme.hashly.global.ExceptionMessage;
+
+@Repository
 public class EventDaoImpl implements EventDao {
 
 	private static final String SQL_EVENT_READ = "SELECT * FROM event WHERE event_id = ?";

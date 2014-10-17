@@ -1,4 +1,4 @@
-package com.neemre.hashly.common.dto;
+package com.neemre.hashly.front.dto;
 
 import com.inspiresoftware.lib.dto.geda.annotations.Dto;
 import com.inspiresoftware.lib.dto.geda.annotations.DtoField;

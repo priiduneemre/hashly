@@ -13,11 +13,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.back.data.SourceFileDao;
 import com.neemre.hashly.back.domain.SourceFile;
 import com.neerme.hashly.global.ExceptionMessage;
 
+@Repository
 public class SourceFileDaoImpl implements SourceFileDao {
 
 	private static final String SQL_SOURCE_FILE_CREATE = "INSERT INTO source_file (file_type_id,"
