@@ -31,30 +31,24 @@ public class ExampleMain {
 		
 		try {
 			md2TextHash = new Md2Generator().generate(new String("blablabla").getBytes(
-					GeneralConst.ENCODING_UTF8), GeneralConst.ENCODING_UTF8);
+					GeneralConst.ENCODING_UTF8));
 			md5TextHash = new Md5Generator().generate(new String("blablabla").getBytes(
-					GeneralConst.ENCODING_UTF8), GeneralConst.ENCODING_UTF8);
+					GeneralConst.ENCODING_UTF8));
 			sha1TextHash = new Sha1Generator().generate(new String("blablabla").getBytes(
-					GeneralConst.ENCODING_UTF8), GeneralConst.ENCODING_UTF8);
+					GeneralConst.ENCODING_UTF8));
 			sha256TextHash = new Sha256Generator().generate(new String("blablabla").getBytes(
-					GeneralConst.ENCODING_UTF8), GeneralConst.ENCODING_UTF8);
+					GeneralConst.ENCODING_UTF8));
 			sha384TextHash = new Sha384Generator().generate(new String("blablabla").getBytes(
-					GeneralConst.ENCODING_UTF8), GeneralConst.ENCODING_UTF8);
+					GeneralConst.ENCODING_UTF8));
 			sha512TextHash = new Sha512Generator().generate(new String("blablabla").getBytes(
-					GeneralConst.ENCODING_UTF8), GeneralConst.ENCODING_UTF8);
+					GeneralConst.ENCODING_UTF8));
 			
-			md2FileHash = new Md2Generator().generate(GeneralConst.TEST_DATA_FILE_PATH, 
-					GeneralConst.ENCODING_UTF8);
-			md5FileHash = new Md5Generator().generate(GeneralConst.TEST_DATA_FILE_PATH, 
-					GeneralConst.ENCODING_UTF8);
-			sha1FileHash = new Sha1Generator().generate(GeneralConst.TEST_DATA_FILE_PATH, 
-					GeneralConst.ENCODING_UTF8);
-			sha256FileHash = new Sha256Generator().generate(GeneralConst.TEST_DATA_FILE_PATH, 
-					GeneralConst.ENCODING_UTF8);
-			sha384FileHash = new Sha384Generator().generate(GeneralConst.TEST_DATA_FILE_PATH, 
-					GeneralConst.ENCODING_UTF8);
-			sha512FileHash = new Sha512Generator().generate(GeneralConst.TEST_DATA_FILE_PATH, 
-					GeneralConst.ENCODING_UTF8);			
+			md2FileHash = new Md2Generator().generate(GeneralConst.TEST_DATA_FILE_PATH);
+			md5FileHash = new Md5Generator().generate(GeneralConst.TEST_DATA_FILE_PATH);
+			sha1FileHash = new Sha1Generator().generate(GeneralConst.TEST_DATA_FILE_PATH);
+			sha256FileHash = new Sha256Generator().generate(GeneralConst.TEST_DATA_FILE_PATH);
+			sha384FileHash = new Sha384Generator().generate(GeneralConst.TEST_DATA_FILE_PATH);
+			sha512FileHash = new Sha512Generator().generate(GeneralConst.TEST_DATA_FILE_PATH);			
 		} catch (NoSuchAlgorithmException e) {
 			System.out.println("Oopsie, something went wrong: " + e.getMessage());
 		} catch (UnsupportedEncodingException e) {

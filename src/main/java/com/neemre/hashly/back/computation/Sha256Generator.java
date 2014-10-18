@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.UnsupportedEncodingException;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -16,8 +15,7 @@ import com.neerme.hashly.global.GeneralConst;
 public class Sha256Generator implements HashGenerator {
 
 	@Override
-	public String generate(byte[] inputData, String encoding) 
-			throws NoSuchAlgorithmException, UnsupportedEncodingException {
+	public String generate(byte[] inputData) throws NoSuchAlgorithmException {
 		MessageDigest digester = MessageDigest.getInstance(GeneralConst.ALGORITHM_SHA256);
 		digester.update(inputData);
 		byte[] digest = digester.digest();
@@ -26,7 +24,7 @@ public class Sha256Generator implements HashGenerator {
 	}
 
 	@Override
-	public String generate(String filePath, String encoding) throws NoSuchAlgorithmException, 
+	public String generate(String filePath) throws NoSuchAlgorithmException, 
 			IOException {
 		InputStream fileInStream = new FileInputStream(new File(filePath));
 		MessageDigest digester = MessageDigest.getInstance(GeneralConst.ALGORITHM_SHA256);
@@ -35,6 +33,7 @@ public class Sha256Generator implements HashGenerator {
 		byte[] buffer = new byte[1024];
 		
 		while(digestInStream.read(buffer) != GeneralConst.END_OF_STREAM_COUNT);
+		digestInStream.close();
 		
 		byte[] digest = digester.digest();
 		return Hex.encodeHexString(digest);

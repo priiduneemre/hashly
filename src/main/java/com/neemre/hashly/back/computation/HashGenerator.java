@@ -1,14 +1,11 @@
 package com.neemre.hashly.back.computation;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
 public interface HashGenerator {
 	
-	public abstract String generate(byte[] inputData, String encoding) 
-			throws NoSuchAlgorithmException, UnsupportedEncodingException;
+	String generate(byte[] inputData) throws NoSuchAlgorithmException;
 	
-	public abstract String generate(String filePath, String encoding)
-			throws NoSuchAlgorithmException, UnsupportedEncodingException, IOException;
+	String generate(String filePath) throws NoSuchAlgorithmException, IOException;
 }
