@@ -24,8 +24,7 @@ public class Sha256Generator implements HashGenerator {
 	}
 
 	@Override
-	public String generate(String filePath) throws NoSuchAlgorithmException, 
-			IOException {
+	public String generate(String filePath) throws NoSuchAlgorithmException, IOException {
 		InputStream fileInStream = new FileInputStream(new File(filePath));
 		MessageDigest digester = MessageDigest.getInstance(GeneralConst.ALGORITHM_SHA256);
 		DigestInputStream digestInStream = new DigestInputStream(fileInStream, digester);
