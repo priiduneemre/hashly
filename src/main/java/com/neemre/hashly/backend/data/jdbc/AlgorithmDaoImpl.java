@@ -37,7 +37,7 @@ public class AlgorithmDaoImpl implements AlgorithmDao {
 	
 	
 	@Override
-	public int create(final Algorithm algorithm) throws DataAccessException {
+	public Integer create(final Algorithm algorithm) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -55,7 +55,7 @@ public class AlgorithmDaoImpl implements AlgorithmDao {
 	}
 	
 	@Override
-	public Algorithm read(int algorithmId) throws DataAccessException {
+	public Algorithm read(Integer algorithmId) throws DataAccessException {
 		Algorithm algorithm = jdbcTemplate.queryForObject(SQL_ALGORITHM_READ, 
 				new Object[] {algorithmId}, BeanPropertyRowMapper.newInstance(Algorithm.class));
 		return algorithm;
@@ -81,7 +81,7 @@ public class AlgorithmDaoImpl implements AlgorithmDao {
 	}
 
 	@Override
-	public void delete(int algorithmId) throws DataAccessException {
+	public void delete(Integer algorithmId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_ALGORITHM_DELETE, algorithmId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

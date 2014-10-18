@@ -37,7 +37,7 @@ public class FileTypeDaoImpl implements FileTypeDao {
 
 
 	@Override
-	public int create(final FileType fileType) throws DataAccessException {
+	public Integer create(final FileType fileType) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -53,7 +53,7 @@ public class FileTypeDaoImpl implements FileTypeDao {
 	}
 
 	@Override
-	public FileType read(int fileTypeId) throws DataAccessException {
+	public FileType read(Integer fileTypeId) throws DataAccessException {
 		FileType fileType = jdbcTemplate.queryForObject(SQL_FILE_TYPE_READ, 
 				new Object[] {fileTypeId}, BeanPropertyRowMapper.newInstance(FileType.class));
 		return fileType;
@@ -78,7 +78,7 @@ public class FileTypeDaoImpl implements FileTypeDao {
 	}
 
 	@Override
-	public void delete(int fileTypeId) throws DataAccessException {
+	public void delete(Integer fileTypeId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_FILE_TYPE_DELETE, fileTypeId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

@@ -37,7 +37,7 @@ public class TextDigestDaoImpl implements TextDigestDao {
 
 
 	@Override
-	public int create(final TextDigest textDigest) throws DataAccessException {
+	public Integer create(final TextDigest textDigest) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -53,7 +53,7 @@ public class TextDigestDaoImpl implements TextDigestDao {
 	}
 
 	@Override
-	public TextDigest read(int digestId) throws DataAccessException {
+	public TextDigest read(Integer digestId) throws DataAccessException {
 		TextDigest textDigest = jdbcTemplate.queryForObject(SQL_TEXT_DIGEST_READ, new Object[] {
 				digestId}, BeanPropertyRowMapper.newInstance(TextDigest.class));
 		return textDigest;
@@ -77,7 +77,7 @@ public class TextDigestDaoImpl implements TextDigestDao {
 		}	}
 
 	@Override
-	public void delete(int digestId) throws DataAccessException {
+	public void delete(Integer digestId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_TEXT_DIGEST_DELETE, digestId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

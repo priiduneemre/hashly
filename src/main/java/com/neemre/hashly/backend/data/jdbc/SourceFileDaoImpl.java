@@ -37,7 +37,7 @@ public class SourceFileDaoImpl implements SourceFileDao {
 
 
 	@Override
-	public int create(final SourceFile sourceFile) throws DataAccessException {
+	public Integer create(final SourceFile sourceFile) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -54,7 +54,7 @@ public class SourceFileDaoImpl implements SourceFileDao {
 	}
 
 	@Override
-	public SourceFile read(int sourceFileId) throws DataAccessException {
+	public SourceFile read(Integer sourceFileId) throws DataAccessException {
 		SourceFile sourceFile = jdbcTemplate.queryForObject(SQL_SOURCE_FILE_READ, new Object[] {
 				sourceFileId}, BeanPropertyRowMapper.newInstance(SourceFile.class));
 		return sourceFile;
@@ -80,7 +80,7 @@ public class SourceFileDaoImpl implements SourceFileDao {
 	}
 
 	@Override
-	public void delete(int sourceFileId) throws DataAccessException {
+	public void delete(Integer sourceFileId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_SOURCE_FILE_DELETE, sourceFileId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

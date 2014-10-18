@@ -37,7 +37,7 @@ public class ResultBundleDaoImpl implements ResultBundleDao {
 
 
 	@Override
-	public int create(final ResultBundle resultBundle) throws DataAccessException {
+	public Integer create(final ResultBundle resultBundle) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -53,7 +53,7 @@ public class ResultBundleDaoImpl implements ResultBundleDao {
 	}
 
 	@Override
-	public ResultBundle read(int resultBundleId) throws DataAccessException {
+	public ResultBundle read(Integer resultBundleId) throws DataAccessException {
 		ResultBundle resultBundle = jdbcTemplate.queryForObject(SQL_RESULT_BUNDLE_READ, 
 				new Object[] {resultBundleId}, BeanPropertyRowMapper.newInstance(
 						ResultBundle.class));
@@ -80,7 +80,7 @@ public class ResultBundleDaoImpl implements ResultBundleDao {
 	}
 
 	@Override
-	public void delete(int resultBundleId) throws DataAccessException {
+	public void delete(Integer resultBundleId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_RESULT_BUNDLE_DELETE, resultBundleId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

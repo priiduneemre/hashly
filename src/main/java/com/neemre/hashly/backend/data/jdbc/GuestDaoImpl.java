@@ -34,7 +34,7 @@ public class GuestDaoImpl implements GuestDao {
 
 
 	@Override
-	public int create(final Guest guest) throws DataAccessException {
+	public Integer create(final Guest guest) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -49,7 +49,7 @@ public class GuestDaoImpl implements GuestDao {
 	}
 
 	@Override
-	public Guest read(int guestId) throws DataAccessException {
+	public Guest read(Integer guestId) throws DataAccessException {
 		Guest guest = jdbcTemplate.queryForObject(SQL_GUEST_READ, new Object[] {guestId}, 
 				BeanPropertyRowMapper.newInstance(Guest.class));
 		return guest;
@@ -74,7 +74,7 @@ public class GuestDaoImpl implements GuestDao {
 	}
 
 	@Override
-	public void delete(int guestId) throws DataAccessException {
+	public void delete(Integer guestId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_GUEST_DELETE, guestId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

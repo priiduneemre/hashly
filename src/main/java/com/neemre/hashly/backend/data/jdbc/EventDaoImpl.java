@@ -36,7 +36,7 @@ public class EventDaoImpl implements EventDao {
 
 	
 	@Override
-	public long create(final Event event) throws DataAccessException {
+	public Long create(final Event event) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection)
@@ -54,7 +54,7 @@ public class EventDaoImpl implements EventDao {
 	}
 
 	@Override
-	public Event read(int eventId) throws DataAccessException {
+	public Event read(Long eventId) throws DataAccessException {
 		Event event = jdbcTemplate.queryForObject(SQL_EVENT_READ, new Object[] {eventId}, 
 				BeanPropertyRowMapper.newInstance(Event.class));
 		return event;
@@ -80,7 +80,7 @@ public class EventDaoImpl implements EventDao {
 	}
 	
 	@Override
-	public void delete(int eventId) throws DataAccessException {
+	public void delete(Long eventId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_EVENT_DELETE, eventId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

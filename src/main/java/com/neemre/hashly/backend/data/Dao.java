@@ -1,16 +1,17 @@
 package com.neemre.hashly.backend.data;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface Dao<T> {
+public interface Dao<T, PK extends Serializable> {
 	
-	int create(T entity);
+	PK create(T entity);
 	
-	T read(int entityId);
+	T read(PK entityId);
 
 	List<T> readAll();
 
 	void update(T entity);
 	
-	void delete(int entityId);
+	void delete(PK entityId);
 }

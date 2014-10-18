@@ -37,7 +37,7 @@ public class EntityTypeDaoImpl implements EntityTypeDao {
 
 
 	@Override
-	public int create(final EntityType entityType) throws DataAccessException {
+	public Integer create(final EntityType entityType) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -53,7 +53,7 @@ public class EntityTypeDaoImpl implements EntityTypeDao {
 	}
 
 	@Override
-	public EntityType read(int entityTypeId) throws DataAccessException {
+	public EntityType read(Integer entityTypeId) throws DataAccessException {
 		EntityType entityType = jdbcTemplate.queryForObject(SQL_ENTITY_TYPE_READ, 
 				new Object[] {entityTypeId}, BeanPropertyRowMapper.newInstance(EntityType.class));
 		return entityType;
@@ -78,7 +78,7 @@ public class EntityTypeDaoImpl implements EntityTypeDao {
 	}
 
 	@Override
-	public void delete(int entityTypeId) throws DataAccessException {
+	public void delete(Integer entityTypeId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_ENTITY_TYPE_DELETE, entityTypeId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(

@@ -37,7 +37,7 @@ public class SourceTextDaoImpl implements SourceTextDao {
 
 
 	@Override
-	public int create(final SourceText sourceText) throws DataAccessException {
+	public Integer create(final SourceText sourceText) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
 		jdbcTemplate.update(new PreparedStatementCreator() {
 			public PreparedStatement createPreparedStatement(Connection connection) 
@@ -52,7 +52,7 @@ public class SourceTextDaoImpl implements SourceTextDao {
 	}
 
 	@Override
-	public SourceText read(int sourceTextId) throws DataAccessException {
+	public SourceText read(Integer sourceTextId) throws DataAccessException {
 		SourceText sourceText = jdbcTemplate.queryForObject(SQL_SOURCE_TEXT_READ, new Object[] {
 				sourceTextId}, BeanPropertyRowMapper.newInstance(SourceText.class));
 		return sourceText;
@@ -77,7 +77,7 @@ public class SourceTextDaoImpl implements SourceTextDao {
 	}
 
 	@Override
-	public void delete(int sourceTextId) throws DataAccessException {
+	public void delete(Integer sourceTextId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_SOURCE_TEXT_DELETE, sourceTextId);
 		if(rowsDeleted != 1) {
 			throw new IncorrectResultSizeDataAccessException(String.format(
