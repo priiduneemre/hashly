@@ -27,11 +27,10 @@ public class EventTypeDaoImpl implements EventTypeDao {
 	private static final String SQL_EVENT_TYPE_READ = "SELECT * FROM event_type WHERE "
 			+ "event_type_id = ?;";
 	private static final String SQL_EVENT_TYPE_READ_ALL = "SELECT * FROM event_type;";
-	private static final String SQL_EVENT_TYPE_UPDATE = "UPDATE event_type SET code = ?, label = ?"
-			+ "WHERE event_type_id = ?;";
+	private static final String SQL_EVENT_TYPE_UPDATE = "UPDATE event_type SET code = ?, "
+			+ "label = ? WHERE event_type_id = ?;";
 	private static final String SQL_EVENT_TYPE_DELETE = "DELETE FROM event_type WHERE "
 			+ "event_type_id = ?;";
-	
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
