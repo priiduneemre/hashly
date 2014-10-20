@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface Dao<T, PK extends Serializable> {
 	
-	PK create(T entity);
+	PK create(T record);
 	
-	T read(PK entityId);
+	T read(PK recordId);
 
 	List<T> readAll();
 
-	void update(T entity);
+	void update(T record);
 	
-	void delete(PK entityId);
+	void delete(PK recordId);
 }

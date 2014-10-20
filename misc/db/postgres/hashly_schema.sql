@@ -668,10 +668,11 @@ INSERT INTO file_type (file_type_id, extension, label) VALUES (2147483646, '.unk
 INSERT INTO file_type (file_type_id, extension, label) VALUES (2147483647, '.unspecified', 'Unspecified file format');
 
 INSERT INTO event_type (event_type_id, code, label) VALUES (1, 'CREATED', 'Item created');
-INSERT INTO event_type (event_type_id, code, label) VALUES (2, 'MODIFIED', 'Item modified');
-INSERT INTO event_type (event_type_id, code, label) VALUES (3, 'DELETED', 'Item deleted');
-INSERT INTO event_type (event_type_id, code, label) VALUES (4, 'WEBAPP_REQUESTED', 'Guest session started');
-INSERT INTO event_type (event_type_id, code, label) VALUES (5, 'PERMALINK_REQUESTED', 'Permalink viewed');
+INSERT INTO event_type (event_type_id, code, label) VALUES (2, 'READ', 'Item read');
+INSERT INTO event_type (event_type_id, code, label) VALUES (3, 'UPDATED', 'Item updated');
+INSERT INTO event_type (event_type_id, code, label) VALUES (4, 'DELETED', 'Item deleted');
+INSERT INTO event_type (event_type_id, code, label) VALUES (5, 'WEBAPP_REQUESTED', 'Guest session started');
+INSERT INTO event_type (event_type_id, code, label) VALUES (6, 'PERMALINK_REQUESTED', 'Permalink viewed');
 
 INSERT INTO entity_type (entity_type_id, code, label) VALUES (1, 'ALGORITHM', 'Algorithm');
 INSERT INTO entity_type (entity_type_id, code, label) VALUES (2, 'GUEST', 'Guest');

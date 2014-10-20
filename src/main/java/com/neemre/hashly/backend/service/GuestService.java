@@ -1,14 +1,8 @@
 package com.neemre.hashly.backend.service;
 
-import java.util.List;
-
 import com.neemre.hashly.backend.domain.Guest;
 
-public interface GuestService {
-	
-	Guest findById(int guestId);
-	
-	List<Guest> findAll();
+public interface GuestService extends Service<Guest, Integer> {
 	
 	Guest addNewGuest(Guest guest);
 

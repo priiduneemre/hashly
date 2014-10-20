@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 @Data
-@ToString(callSuper = false)
+@ToString
 @EqualsAndHashCode(callSuper = false)
 public abstract class Entity {
 

@@ -1,9 +1,8 @@
 package com.neemre.hashly.backend.service;
 
-public class EventService {
+import com.neemre.hashly.backend.domain.Event;
 
-	public EventService() {
-		// TODO Auto-generated constructor stub
-	}
-
+public interface EventService extends Service<Event, Long> {
+	
+	Event addNewEvent(Event event);
 }
