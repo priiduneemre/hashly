@@ -15,7 +15,7 @@ public class EventServiceImpl implements EventService {
 	@Autowired
 	private EventDao eventDao;
 
-	
+
 	@Override
 	public Event findById(Long eventId) {
 		return eventDao.read(eventId);

@@ -10,13 +10,14 @@ import java.security.NoSuchAlgorithmException;
 
 import org.apache.commons.codec.binary.Hex;
 
+import com.neemre.hashly.backend.domain.reference.enums.Algorithms;
 import com.neerme.hashly.common.GeneralConst;
 
 public class Sha256Generator implements HashGenerator {
 
 	@Override
 	public String generate(byte[] inputData) throws NoSuchAlgorithmException {
-		MessageDigest digester = MessageDigest.getInstance(GeneralConst.ALGORITHM_SHA256);
+		MessageDigest digester = MessageDigest.getInstance(Algorithms.SHA256.getName());
 		digester.update(inputData);
 		byte[] digest = digester.digest();
 
@@ -26,7 +27,7 @@ public class Sha256Generator implements HashGenerator {
 	@Override
 	public String generate(String filePath) throws NoSuchAlgorithmException, IOException {
 		InputStream fileInStream = new FileInputStream(new File(filePath));
-		MessageDigest digester = MessageDigest.getInstance(GeneralConst.ALGORITHM_SHA256);
+		MessageDigest digester = MessageDigest.getInstance(Algorithms.SHA256.getName());
 		DigestInputStream digestInStream = new DigestInputStream(fileInStream, digester);
 
 		byte[] buffer = new byte[1024];
