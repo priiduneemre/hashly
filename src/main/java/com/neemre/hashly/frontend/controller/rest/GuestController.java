@@ -75,13 +75,4 @@ public class GuestController {
 		eventService.addNewEvent(EventTypes.UPDATED, guestId, EntityTypes.GUEST, 
 				request.getRemoteAddr());
 	}
-
-	@ResponseBody
-	@RequestMapping(value = "/{guestId}", method = RequestMethod.DELETE, produces = "application/json; charset=UTF-8")
-	public void deleteGuest(HttpServletRequest request, 
-			@PathVariable(value = "guestId") int guestId) {
-		guestService.deleteGuest(guestId);
-		eventService.addNewEvent(EventTypes.DELETED, guestId, EntityTypes.GUEST, 
-				request.getRemoteAddr());
-	}
 }

@@ -40,9 +40,4 @@ public class GuestServiceImpl implements GuestService {
 		guestDao.update(updatedGuest);
 		return guestDao.read(guestId);
 	}
-
-	@Override
-	public void deleteGuest(int guestId) {
-		guestDao.delete(guestId);
-	}
 }

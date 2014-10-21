@@ -7,6 +7,4 @@ public interface GuestService extends Service<Guest, Integer> {
 	Guest addNewGuest(Guest guest);
 
 	Guest updateGuestVisitCount(int guestId, int incrementBy);
-	
-	void deleteGuest(int guestId);
 }
