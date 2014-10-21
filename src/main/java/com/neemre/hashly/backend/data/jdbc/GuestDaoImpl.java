@@ -24,6 +24,8 @@ public class GuestDaoImpl implements GuestDao {
 
 	private static final String SQL_GUEST_CREATE = "INSERT INTO guest (ip_address) VALUES (?);";
 	private static final String SQL_GUEST_READ = "SELECT * FROM guest WHERE guest_id = ?;";
+	private static final String SQL_GUEST_READ_IP_ADDRESS = "SELECT * FROM guest WHERE "
+			+ "ip_address = ?;";
 	private static final String SQL_GUEST_READ_ALL = "SELECT * FROM guest;";
 	private static final String SQL_GUEST_UPDATE = "UPDATE guest SET ip_address = ?, " 
 			+ "visit_count = ? WHERE guest_id = ?;";
@@ -50,8 +52,15 @@ public class GuestDaoImpl implements GuestDao {
 
 	@Override
 	public Guest read(Integer guestId) throws DataAccessException {
-		Guest guest = jdbcTemplate.queryForObject(SQL_GUEST_READ, new Object[] {guestId}, 
+		Guest guest = jdbcTemplate.queryForObject(SQL_GUEST_READ, new Object[] {guestId},
 				BeanPropertyRowMapper.newInstance(Guest.class));
+		return guest;
+	}
+	
+	@Override
+	public Guest readByIpAddress(String ipAddress) {
+		Guest guest = jdbcTemplate.queryForObject(SQL_GUEST_READ_IP_ADDRESS, 
+				new Object[]{ipAddress}, BeanPropertyRowMapper.newInstance(Guest.class));
 		return guest;
 	}
 

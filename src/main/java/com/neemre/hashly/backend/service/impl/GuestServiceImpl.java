@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.neemre.hashly.backend.data.GuestDao;
 import com.neemre.hashly.backend.domain.Guest;
-import com.neemre.hashly.backend.service.EventService;
 import com.neemre.hashly.backend.service.GuestService;
 
 @Service("guestService")
@@ -15,8 +14,6 @@ public class GuestServiceImpl implements GuestService {
 	
 	@Autowired
 	private GuestDao guestDao;
-	@Autowired
-	private EventService eventService;
 
 	
 	@Override

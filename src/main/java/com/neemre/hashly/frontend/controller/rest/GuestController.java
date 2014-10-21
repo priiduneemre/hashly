@@ -3,6 +3,8 @@ package com.neemre.hashly.frontend.controller.rest;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.inspiresoftware.lib.dto.geda.assembler.DTOAssembler;
 import com.neemre.hashly.backend.domain.Guest;
+import com.neemre.hashly.backend.domain.reference.enums.EntityTypes;
+import com.neemre.hashly.backend.domain.reference.enums.EventTypes;
+import com.neemre.hashly.backend.service.EventService;
 import com.neemre.hashly.backend.service.GuestService;
 import com.neemre.hashly.frontend.dto.GuestDto;
 
@@ -22,6 +27,8 @@ public class GuestController {
 
 	@Autowired
 	private GuestService guestService;
+	@Autowired
+	private EventService eventService;
 	
 
 	@ResponseBody
@@ -29,8 +36,8 @@ public class GuestController {
 	public GuestDto getGuest(@PathVariable(value = "guestId") int guestId) {
 		Guest outGuest = guestService.findById(guestId);
 		GuestDto outGuestDto = new GuestDto();
-		DTOAssembler.newAssembler(outGuestDto.getClass(), outGuest.getClass()).assembleDto(
-				outGuestDto, outGuest, null, null);
+		DTOAssembler.newAssembler(GuestDto.class, Guest.class).assembleDto(outGuestDto, outGuest, 
+				null, null);
 		return outGuestDto;
 	}
 	
@@ -46,27 +53,35 @@ public class GuestController {
 	
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
-	public GuestDto addNewGuest(@RequestBody GuestDto inGuestDto) {
+	public GuestDto addNewGuest(HttpServletRequest request, @RequestBody GuestDto inGuestDto) {
 		Guest inGuest = new Guest();
-		DTOAssembler.newAssembler(inGuestDto.getClass(), inGuest.getClass()).assembleEntity(
-				inGuestDto, inGuest, null, null);
+		DTOAssembler.newAssembler(GuestDto.class, Guest.class).assembleEntity(inGuestDto, 
+				inGuest, null, null);
+		inGuest.setIpAddress(request.getRemoteAddr());
 		Guest outGuest = guestService.addNewGuest(inGuest);
+		eventService.addNewEvent(EventTypes.CREATED, outGuest.getGuestId(), EntityTypes.GUEST, 
+				request.getRemoteAddr());
 		GuestDto outGuestDto = new GuestDto();
-		DTOAssembler.newAssembler(outGuestDto.getClass(), outGuest.getClass()).assembleDto(
-				outGuestDto, outGuest, null, null);
+		DTOAssembler.newAssembler(GuestDto.class, Guest.class).assembleDto(outGuestDto, outGuest, 
+				null, null);
 		return outGuestDto;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/{guestId}/visitCount", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
-	public void updateGuestVisitCount(@PathVariable(value = "guestId") int guestId, 
-			@RequestBody int incrementBy) {
+	public void updateGuestVisitCount(HttpServletRequest request, 
+			@PathVariable(value = "guestId") int guestId, @RequestBody int incrementBy) {
 		guestService.updateGuestVisitCount(guestId, incrementBy);
+		eventService.addNewEvent(EventTypes.UPDATED, guestId, EntityTypes.GUEST, 
+				request.getRemoteAddr());
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/{guestId}", method = RequestMethod.DELETE, produces = "application/json; charset=UTF-8")
-	public void deleteGuest(@PathVariable(value = "guestId") int guestId) {
+	public void deleteGuest(HttpServletRequest request, 
+			@PathVariable(value = "guestId") int guestId) {
 		guestService.deleteGuest(guestId);
+		eventService.addNewEvent(EventTypes.DELETED, guestId, EntityTypes.GUEST, 
+				request.getRemoteAddr());
 	}
 }
