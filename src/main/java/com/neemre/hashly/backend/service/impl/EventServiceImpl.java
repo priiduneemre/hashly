@@ -52,10 +52,12 @@ public class EventServiceImpl implements EventService {
 		return newEvent;
 	}
 
+	@Override
 	public List<EventType> findAllEventTypes() {
 		return eventTypeDao.readAll();
 	}
 
+	@Override
 	public EventType findEventTypeByCode(String code) {
 		List<EventType> eventTypes = findAllEventTypes();
 		for(EventType eventType : eventTypes) {
@@ -66,10 +68,12 @@ public class EventServiceImpl implements EventService {
 		return null;
 	}
 
+	@Override
 	public List<EntityType> findAllEntityTypes() {
 		return entityTypeDao.readAll();
 	}
 
+	@Override
 	public EntityType findEntityTypeByCode(String code) {
 		List<EntityType> entityTypes = findAllEntityTypes();
 		for(EntityType entityType : entityTypes) {
