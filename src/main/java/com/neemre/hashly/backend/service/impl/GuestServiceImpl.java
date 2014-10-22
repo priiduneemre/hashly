@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.neemre.hashly.backend.data.GuestDao;
 import com.neemre.hashly.backend.domain.Guest;
@@ -16,16 +17,19 @@ public class GuestServiceImpl implements GuestService {
 	private GuestDao guestDao;
 
 	
+	@Transactional
 	@Override
 	public Guest findById(Integer guestId) {
 		return guestDao.read(guestId);
 	}
 
+	@Transactional
 	@Override
 	public List<Guest> findAll() {
 		return guestDao.readAll();
 	}
 	
+	@Transactional
 	@Override
 	public Guest addNewGuest(Guest guest) {
 		int newGuestId = guestDao.create(guest);
@@ -33,6 +37,7 @@ public class GuestServiceImpl implements GuestService {
 		return newGuest;
 	}
 
+	@Transactional
 	@Override
 	public Guest updateGuestVisitCount(int guestId, int incrementBy) {
 		Guest updatedGuest = guestDao.read(guestId);

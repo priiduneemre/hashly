@@ -19,7 +19,7 @@ import com.neemre.hashly.backend.domain.reference.enums.EntityTypes;
 import com.neemre.hashly.backend.domain.reference.enums.EventTypes;
 import com.neemre.hashly.backend.service.EventService;
 import com.neemre.hashly.backend.service.GuestService;
-import com.neemre.hashly.frontend.dto.GuestDto;
+import com.neemre.hashly.common.dto.GuestDto;
 
 @Controller("guestController")
 @RequestMapping("api/v1/guests")

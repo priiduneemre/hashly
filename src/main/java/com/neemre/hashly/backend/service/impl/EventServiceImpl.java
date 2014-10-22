@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.neemre.hashly.backend.data.EntityTypeDao;
 import com.neemre.hashly.backend.data.EventDao;
@@ -29,16 +30,19 @@ public class EventServiceImpl implements EventService {
 	private GuestDao guestDao;
 	
 
+	@Transactional
 	@Override
 	public Event findById(Long eventId) {
 		return eventDao.read(eventId);
 	}
-
+	
+	@Transactional
 	@Override
 	public List<Event> findAll() {
 		return eventDao.readAll();
 	}
 
+	@Transactional
 	@Override
 	public Event addNewEvent(EventTypes eventType, int sourceItemId, EntityTypes entityType,
 			String ipAddress) {
@@ -51,12 +55,14 @@ public class EventServiceImpl implements EventService {
 		Event newEvent = eventDao.read(newEventId);
 		return newEvent;
 	}
-
+	
+	@Transactional
 	@Override
 	public List<EventType> findAllEventTypes() {
 		return eventTypeDao.readAll();
 	}
 
+	@Transactional
 	@Override
 	public EventType findEventTypeByCode(String code) {
 		List<EventType> eventTypes = findAllEventTypes();
@@ -68,11 +74,13 @@ public class EventServiceImpl implements EventService {
 		return null;
 	}
 
+	@Transactional
 	@Override
 	public List<EntityType> findAllEntityTypes() {
 		return entityTypeDao.readAll();
 	}
 
+	@Transactional
 	@Override
 	public EntityType findEntityTypeByCode(String code) {
 		List<EntityType> entityTypes = findAllEntityTypes();
