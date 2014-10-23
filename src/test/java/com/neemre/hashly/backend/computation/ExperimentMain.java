@@ -1,4 +1,4 @@
-package com.neemre.hashly.example;
+package com.neemre.hashly.backend.computation;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -13,7 +13,7 @@ import com.neemre.hashly.backend.computation.Sha512Generator;
 import com.neerme.hashly.common.Encodings;
 import com.neerme.hashly.common.GeneralConst;
 
-public class ExampleMain {
+public class ExperimentMain {
 
 	public static void main (String[] args) {
 		String md2TextHash = null;

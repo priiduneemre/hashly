@@ -2,22 +2,22 @@ package com.neemre.hashly.backend.service;
 
 import java.util.List;
 
-import com.neemre.hashly.backend.domain.Event;
-import com.neemre.hashly.backend.domain.reference.EntityType;
-import com.neemre.hashly.backend.domain.reference.EventType;
 import com.neemre.hashly.backend.domain.reference.enums.EntityTypes;
 import com.neemre.hashly.backend.domain.reference.enums.EventTypes;
+import com.neemre.hashly.common.dto.EntityTypeDto;
+import com.neemre.hashly.common.dto.EventDto;
+import com.neemre.hashly.common.dto.EventTypeDto;
 
-public interface EventService extends Service<Event, Long> {
+public interface EventService extends Service<EventDto, Long> {
 
-	Event addNewEvent(EventTypes eventType, int sourceItemId, EntityTypes entityType, 
+	EventDto addNewEvent(EventTypes eventType, Integer sourceItemId, EntityTypes entityType, 
 			String ipAddress);
 
-	List<EventType> findAllEventTypes();
+	List<EventTypeDto> findAllEventTypes();
 	
-	EventType findEventTypeByCode(String code);
+	EventTypeDto findEventTypeByCode(String code);
 	
-	List<EntityType> findAllEntityTypes();
+	List<EntityTypeDto> findAllEntityTypes();
 	
-	EntityType findEntityTypeByCode(String code);	
+	EntityTypeDto findEntityTypeByCode(String code);	
 }

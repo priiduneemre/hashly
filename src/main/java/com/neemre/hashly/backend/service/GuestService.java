@@ -1,10 +1,10 @@
 package com.neemre.hashly.backend.service;
 
-import com.neemre.hashly.backend.domain.Guest;
+import com.neemre.hashly.common.dto.GuestDto;
 
-public interface GuestService extends Service<Guest, Integer> {
+public interface GuestService extends Service<GuestDto, Integer> {
 	
-	Guest addNewGuest(Guest guest);
+	GuestDto addNewGuest(GuestDto guestDto);
 
-	Guest updateGuestVisitCount(int guestId, int incrementBy);
+	GuestDto updateGuestVisitCount(Integer guestId, Integer incrementBy);
 }

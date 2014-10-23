@@ -9,12 +9,12 @@ import lombok.EqualsAndHashCode;
 @Dto
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class GuestDto {
+public class EventTypeDto {
 
-	@DtoField(value = "guestId", readOnly = true)
-	private Integer guestId;
-	@DtoField("ipAddress")
-	private String ipAddress;
-	@DtoField("visitCount")
-	private Integer visitCount;
+	@DtoField(value = "eventTypeId", readOnly = true)
+	private Integer eventTypeId;
+	@DtoField("code")
+	private String code;
+	@DtoField("label")
+	private String label;
 }
