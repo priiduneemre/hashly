@@ -3,9 +3,9 @@ package com.neemre.hashly.backend.service;
 import java.io.Serializable;
 import java.util.List;
 
-public interface Service<T, ID extends Serializable> {
+public interface Service<T, K extends Serializable> {
 
-	T findById(ID entityId);
+	T findById(K entityId);
 	
 	List<T> findAll();
 } 

@@ -4,14 +4,16 @@ import java.util.Date;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import com.inspiresoftware.lib.dto.geda.annotations.Dto;
 import com.inspiresoftware.lib.dto.geda.annotations.DtoField;
 
 @Dto
 @Data
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
-public class EventDto {
+public class EventDto extends EntityDto {
 
 	@DtoField(value = "eventId", readOnly = true)
 	private Long eventId;

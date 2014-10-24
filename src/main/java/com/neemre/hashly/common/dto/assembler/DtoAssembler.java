@@ -1,5 +1,7 @@
 package com.neemre.hashly.common.dto.assembler;
 
+import java.util.List;
+
 import com.neemre.hashly.backend.domain.Guest;
 import com.neemre.hashly.backend.domain.reference.EntityType;
 import com.neemre.hashly.backend.domain.reference.EventType;
@@ -16,9 +18,9 @@ public interface DtoAssembler {
 	Guest disassemble(GuestDto guestDto);
 	
 	EventTypeDto assemble(EventType eventType);
-	
+		
 	EventType disassemble(EventTypeDto eventTypeDto);
-	
+
 	EntityTypeDto assemble(EntityType entityType);
 	
 	EntityType disassemble(EntityTypeDto entityTypeDto);

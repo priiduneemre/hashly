@@ -5,11 +5,13 @@ import com.inspiresoftware.lib.dto.geda.annotations.DtoField;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Dto
 @Data
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
-public class GuestDto {
+public class GuestDto extends EntityDto {
 
 	@DtoField(value = "guestId", readOnly = true)
 	private Integer guestId;

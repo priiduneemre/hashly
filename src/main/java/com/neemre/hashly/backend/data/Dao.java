@@ -3,15 +3,15 @@ package com.neemre.hashly.backend.data;
 import java.io.Serializable;
 import java.util.List;
 
-public interface Dao<T, PK extends Serializable> {
+public interface Dao<T, K extends Serializable> {
 	
-	PK create(T record);
+	K create(T record);
 	
-	T read(PK recordId);
+	T read(K recordId);
 
 	List<T> readAll();
 
 	void update(T record);
 	
-	void delete(PK recordId);
+	void delete(K recordId);
 }
