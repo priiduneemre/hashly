@@ -70,10 +70,8 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-<!--
  	<bean id="loggingAspect" class="com.neemre.hashly.common.aop.LoggingAspect" />
 	<aop:aspectj-autoproxy>
 		<aop:include name="loggingAspect" />
 	</aop:aspectj-autoproxy>
- -->
 </beans>

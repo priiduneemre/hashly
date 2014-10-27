@@ -9,4 +9,6 @@ public class ExceptionMessage {
 
 	public static final String ARGUMENTS_INCOMPATIBLE_ITEM_COUNT = "Incompatible (unequal) item "
 			+ "count for one or more pairs of [%s]!";
+	public static final String METHOD_UNEXPECTED_NULL_RESULT = "The executing method (%s) "
+			+ "attempted to return a 'null' result where a non-null value was expected!";
 }
