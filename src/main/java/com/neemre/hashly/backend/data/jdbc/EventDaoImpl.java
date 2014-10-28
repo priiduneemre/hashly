@@ -44,7 +44,7 @@ public class EventDaoImpl implements EventDao {
 				PreparedStatement ps = connection.prepareStatement(SQL_EVENT_CREATE,
 						new String[] {"event_id"});
 				ps.setInt(1, event.getEventTypeId());
-				ps.setInt(2, event.getSourceItemId());
+				ps.setLong(2, event.getSourceItemId());
 				ps.setInt(3, event.getEntityTypeId());
 				ps.setInt(4, event.getGuestId());
 				return ps;

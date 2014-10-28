@@ -74,7 +74,7 @@ public class EventServiceImpl implements EventService {
 
 	@Transactional
 	@Override
-	public EventDto addNewEvent(EventTypes eventType, Integer sourceItemId, EntityTypes entityType,
+	public EventDto addNewEvent(EventTypes eventType, Long sourceItemId, EntityTypes entityType,
 			String ipAddress) {
 		Event event = new Event();
 		event.setEventTypeId(findEventTypeByCode(eventType.name()).getEventTypeId());

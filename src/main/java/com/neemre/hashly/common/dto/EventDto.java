@@ -19,7 +19,7 @@ public class EventDto extends EntityDto {
 	private Long eventId;
 	private EventTypeDto eventType;
 	@DtoField("sourceItemId")
-	private Integer sourceItemId;
+	private Long sourceItemId;
 	private EntityTypeDto entityType;
 	private GuestDto guest;
 	@DtoField("occurredAt")

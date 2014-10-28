@@ -13,7 +13,7 @@ public class Event extends Entity {
 
 	private Long eventId;
 	private Integer eventTypeId;
-	private Integer sourceItemId;
+	private Long sourceItemId;
 	private Integer entityTypeId;
 	private Integer guestId;
 	private Date occurredAt;

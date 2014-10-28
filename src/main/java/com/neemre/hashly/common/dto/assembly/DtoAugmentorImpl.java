@@ -40,9 +40,9 @@ public class DtoAugmentorImpl implements DtoAugmentor {
 	@Override
 	public List<EventDto> augment(List<EventDto> eventDtos, List<EventType> eventTypes, 
 			List<EntityType> entityTypes, List<Guest> guests) {
-		checkArgument(ObjectUtils.allEqual(eventDtos.size(), eventTypes.size(), entityTypes.size(),
-				guests.size()), ExceptionMessage.ARGUMENTS_INCOMPATIBLE_ITEM_COUNT, "eventDtos, "
-				+ "eventTypes, entityTypes, guests");
+		checkArgument(new ObjectUtils().allEqual(eventDtos.size(), eventTypes.size(), entityTypes
+				.size(), guests.size()), ExceptionMessage.ARGUMENTS_INCOMPATIBLE_ITEM_COUNT, 
+				"eventDtos, eventTypes, entityTypes, guests");
 		for(int i = 0; i < eventDtos.size(); i++) {
 			eventDtos.set(i, augment(eventDtos.get(i), eventTypes.get(i), entityTypes.get(i), 
 					guests.get(i)));
@@ -60,7 +60,7 @@ public class DtoAugmentorImpl implements DtoAugmentor {
 
 	@Override
 	public List<Event> unaugment(List<Event> events, List<EventDto> eventDtos) {
-		checkArgument(ObjectUtils.allEqual(events.size(), eventDtos.size()), 
+		checkArgument(new ObjectUtils().allEqual(events.size(), eventDtos.size()), 
 				ExceptionMessage.ARGUMENTS_INCOMPATIBLE_ITEM_COUNT, "events, eventDtos");
 		for(int i = 0; i < events.size(); i++) {
 			events.set(i, unaugment(events.get(i), eventDtos.get(i)));

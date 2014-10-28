@@ -157,7 +157,7 @@ CREATE TABLE entity_type (
 CREATE TABLE event (
     event_id                BIGSERIAL,
     event_type_id           SMALLINT        NOT NULL,
-    source_item_id          INTEGER         NOT NULL,
+    source_item_id          BIGINT          NOT NULL,
     entity_type_id          SMALLINT        NOT NULL,
     guest_id                INTEGER         NOT NULL,
     occurred_at             TIMESTAMP(0)    NOT NULL    DEFAULT CURRENT_TIMESTAMP(0),

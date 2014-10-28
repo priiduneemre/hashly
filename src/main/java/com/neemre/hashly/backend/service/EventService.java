@@ -10,7 +10,7 @@ import com.neemre.hashly.common.dto.EventTypeDto;
 
 public interface EventService extends Service<EventDto, Long> {
 
-	EventDto addNewEvent(EventTypes eventType, Integer sourceItemId, EntityTypes entityType, 
+	EventDto addNewEvent(EventTypes eventType, Long sourceItemId, EntityTypes entityType, 
 			String ipAddress);
 
 	List<EventTypeDto> findAllEventTypes();

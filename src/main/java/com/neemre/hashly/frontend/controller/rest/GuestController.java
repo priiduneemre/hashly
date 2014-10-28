@@ -45,19 +45,19 @@ public class GuestController {
 	@ResponseBody
 	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
 	public GuestDto addNewGuest(HttpServletRequest request, @RequestBody GuestDto inGuestDto) {
-		inGuestDto.setIpAddress(request.getRemoteAddr());
+		//inGuestDto.setIpAddress(request.getRemoteAddr());		//Comment out during: DEVELOPMENT-TIME
 		GuestDto outGuestDto = guestService.addNewGuest(inGuestDto);
-		eventService.addNewEvent(EventTypes.CREATED, outGuestDto.getGuestId(), EntityTypes.GUEST, 
-				request.getRemoteAddr());
+		eventService.addNewEvent(EventTypes.CREATED, outGuestDto.getGuestId().longValue(),
+				EntityTypes.GUEST, request.getRemoteAddr());
 		return outGuestDto;
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/{guestId}/visitCount", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
 	public void updateGuestVisitCount(HttpServletRequest request, 
-			@PathVariable(value = "guestId") int guestId, @RequestBody int incrementBy) {
+			@PathVariable(value = "guestId") Integer guestId, @RequestBody Integer incrementBy) {
 		guestService.updateGuestVisitCount(guestId, incrementBy);
-		eventService.addNewEvent(EventTypes.UPDATED, guestId, EntityTypes.GUEST, 
+		eventService.addNewEvent(EventTypes.UPDATED, guestId.longValue(), EntityTypes.GUEST,
 				request.getRemoteAddr());
 	}
 }

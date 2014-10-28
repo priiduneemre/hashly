@@ -13,7 +13,7 @@ import com.neemre.hashly.backend.computation.Sha512Generator;
 import com.neerme.hashly.common.Encodings;
 import com.neerme.hashly.common.GeneralConst;
 
-public class ExperimentMain {
+public class ExperimentalMain {
 
 	public static void main (String[] args) {
 		String md2TextHash = null;
