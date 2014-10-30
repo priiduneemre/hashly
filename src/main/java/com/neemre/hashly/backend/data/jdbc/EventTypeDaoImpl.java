@@ -17,7 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.backend.data.EventTypeDao;
 import com.neemre.hashly.backend.domain.reference.EventType;
-import com.neerme.hashly.common.ExceptionMessage;
+import com.neemre.hashly.common.misc.ResourceWrapper;
+import com.neerme.hashly.common.ErrorCodes;
 
 @Repository
 public class EventTypeDaoImpl implements EventTypeDao {
@@ -34,7 +35,10 @@ public class EventTypeDaoImpl implements EventTypeDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
+
+	@Autowired
+	private ResourceWrapper resources;
+
 
 	@Override
 	public Integer create(final EventType eventType) throws DataAccessException {
@@ -71,9 +75,9 @@ public class EventTypeDaoImpl implements EventTypeDao {
 		int rowsUpdated = jdbcTemplate.update(SQL_EVENT_TYPE_UPDATE, new Object[] {
 				eventType.getCode(), eventType.getLabel(), eventType.getEventTypeId()});
 		if(rowsUpdated != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 
-					EventType.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_UPDATE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, EventType.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 
@@ -81,9 +85,9 @@ public class EventTypeDaoImpl implements EventTypeDao {
 	public void delete(Integer eventTypeId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_EVENT_TYPE_DELETE, eventTypeId);
 		if(rowsDeleted != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_DELETE_INCORRECT_RESULT_SIZE, 1,
-					EventType.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_DELETE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, EventType.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 }

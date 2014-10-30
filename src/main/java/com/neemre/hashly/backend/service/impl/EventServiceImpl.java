@@ -24,7 +24,8 @@ import com.neemre.hashly.common.dto.EventDto;
 import com.neemre.hashly.common.dto.EventTypeDto;
 import com.neemre.hashly.common.dto.assembly.DtoAssembler;
 import com.neemre.hashly.common.dto.assembly.DtoAugmentor;
-import com.neerme.hashly.common.ExceptionMessage;
+import com.neemre.hashly.common.misc.ResourceWrapper;
+import com.neerme.hashly.common.ErrorCodes;
 
 @Service("eventService")
 public class EventServiceImpl implements EventService {
@@ -42,8 +43,11 @@ public class EventServiceImpl implements EventService {
 	private DtoAssembler dtoAssembler;
 	@Autowired
 	private DtoAugmentor dtoAugmentor;
+	
+	@Autowired
+	private ResourceWrapper resources;
 
-
+	
 	@Transactional
 	@Override
 	public EventDto findById(Long eventId) {
@@ -110,8 +114,9 @@ public class EventServiceImpl implements EventService {
 				break;
 			}
 		}
-		checkState(outEventTypeDto != null, ExceptionMessage.METHOD_UNEXPECTED_NULL_RESULT, 
-				new Object(){}.getClass().getEnclosingClass().getName());
+		String errorMsg = resources.getErrorMessage(ErrorCodes.METHOD_UNEXPECTED_NULL_RESULT,
+				new Object[] {new Object(){}.getClass().getEnclosingMethod().getName()});
+		checkState(outEventTypeDto != null, errorMsg);
 		return outEventTypeDto;
 	}
 
@@ -134,8 +139,9 @@ public class EventServiceImpl implements EventService {
 				break;
 			}
 		}
-		checkState(outEntityTypeDto != null, ExceptionMessage.METHOD_UNEXPECTED_NULL_RESULT,
-				new Object(){}.getClass().getEnclosingClass().getName());
+		String errorMsg = resources.getErrorMessage(ErrorCodes.METHOD_UNEXPECTED_NULL_RESULT,
+				new Object[] {new Object(){}.getClass().getEnclosingMethod().getName()});
+		checkState(outEntityTypeDto != null, errorMsg);
 		return outEntityTypeDto;
 	} 
 }

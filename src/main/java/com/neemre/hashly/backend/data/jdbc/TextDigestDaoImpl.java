@@ -17,7 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.backend.data.TextDigestDao;
 import com.neemre.hashly.backend.domain.TextDigest;
-import com.neerme.hashly.common.ExceptionMessage;
+import com.neemre.hashly.common.misc.ResourceWrapper;
+import com.neerme.hashly.common.ErrorCodes;
 
 @Repository
 public class TextDigestDaoImpl implements TextDigestDao {
@@ -34,6 +35,9 @@ public class TextDigestDaoImpl implements TextDigestDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	private ResourceWrapper resources;
 
 
 	@Override
@@ -71,18 +75,20 @@ public class TextDigestDaoImpl implements TextDigestDao {
 		int rowsUpdated = jdbcTemplate.update(SQL_TEXT_DIGEST_UPDATE, new Object[] {
 				textDigest.getDigestId(), textDigest.getSourceTextId(), textDigest.getDigestId()});
 		if(rowsUpdated != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 
-					TextDigest.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
-		}	}
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_UPDATE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, TextDigest.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
+		}	
+	}
 
 	@Override
 	public void delete(Integer digestId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_TEXT_DIGEST_DELETE, digestId);
 		if(rowsDeleted != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_DELETE_INCORRECT_RESULT_SIZE, 1,
-					TextDigest.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_DELETE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, TextDigest.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 }

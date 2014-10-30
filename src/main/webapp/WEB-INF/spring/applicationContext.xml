@@ -74,4 +74,16 @@
 	<aop:aspectj-autoproxy>
 		<aop:include name="loggingAspect" />
 	</aop:aspectj-autoproxy>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="basenames">
+			<list>
+				<value>WEB-INF/classes/i18n/errors_bundle</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="resourceWrapper" class="com.neemre.hashly.common.misc.ResourceWrapper" />
+	
 </beans>

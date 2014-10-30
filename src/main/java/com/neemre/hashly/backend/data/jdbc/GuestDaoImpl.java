@@ -17,7 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.backend.data.GuestDao;
 import com.neemre.hashly.backend.domain.Guest;
-import com.neerme.hashly.common.ExceptionMessage;
+import com.neemre.hashly.common.misc.ResourceWrapper;
+import com.neerme.hashly.common.ErrorCodes;
 
 @Repository
 public class GuestDaoImpl implements GuestDao {
@@ -33,6 +34,9 @@ public class GuestDaoImpl implements GuestDao {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	private ResourceWrapper resources;
 
 
 	@Override
@@ -76,9 +80,9 @@ public class GuestDaoImpl implements GuestDao {
 		int rowsUpdated = jdbcTemplate.update(SQL_GUEST_UPDATE, new Object[] {guest.getIpAddress(),
 				guest.getVisitCount(), guest.getGuestId()});
 		if(rowsUpdated != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 
-					Guest.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_UPDATE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, Guest.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 
@@ -86,9 +90,9 @@ public class GuestDaoImpl implements GuestDao {
 	public void delete(Integer guestId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_GUEST_DELETE, guestId);
 		if(rowsDeleted != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_DELETE_INCORRECT_RESULT_SIZE, 1,
-					Guest.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_DELETE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, Guest.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 }

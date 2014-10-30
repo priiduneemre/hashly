@@ -17,7 +17,8 @@ import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.backend.data.FileTypeDao;
 import com.neemre.hashly.backend.domain.reference.FileType;
-import com.neerme.hashly.common.ExceptionMessage;
+import com.neemre.hashly.common.misc.ResourceWrapper;
+import com.neerme.hashly.common.ErrorCodes;
 
 @Repository
 public class FileTypeDaoImpl implements FileTypeDao {
@@ -34,6 +35,9 @@ public class FileTypeDaoImpl implements FileTypeDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	private ResourceWrapper resources;
 
 
 	@Override
@@ -71,9 +75,9 @@ public class FileTypeDaoImpl implements FileTypeDao {
 		int rowsUpdated = jdbcTemplate.update(SQL_FILE_TYPE_UPDATE, new Object[] {
 				fileType.getExtension(), fileType.getLabel(), fileType.getFileTypeId()});
 		if(rowsUpdated != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 
-					FileType.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_UPDATE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, FileType.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 
@@ -81,9 +85,9 @@ public class FileTypeDaoImpl implements FileTypeDao {
 	public void delete(Integer fileTypeId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_FILE_TYPE_DELETE, fileTypeId);
 		if(rowsDeleted != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_DELETE_INCORRECT_RESULT_SIZE, 1,
-					FileType.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_DELETE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, FileType.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 }

@@ -17,11 +17,12 @@ import org.springframework.stereotype.Repository;
 
 import com.neemre.hashly.backend.data.AlgorithmDao;
 import com.neemre.hashly.backend.domain.reference.Algorithm;
-import com.neerme.hashly.common.ExceptionMessage;
+import com.neemre.hashly.common.misc.ResourceWrapper;
+import com.neerme.hashly.common.ErrorCodes;
 
 @Repository
 public class AlgorithmDaoImpl implements AlgorithmDao {
-	
+
 	private static final String SQL_ALGORITHM_CREATE = "INSERT INTO algorithm (name, "
 			+ "designer_name, digest_length_bits, description) VALUES (?, ?, ?, ?);";
 	private static final String SQL_ALGORITHM_READ = "SELECT * FROM algorithm WHERE " 
@@ -34,8 +35,11 @@ public class AlgorithmDaoImpl implements AlgorithmDao {
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
-	
+
+	@Autowired
+	private ResourceWrapper resources;
+
+
 	@Override
 	public Integer create(final Algorithm algorithm) throws DataAccessException {
 		KeyHolder idHolder = new GeneratedKeyHolder();
@@ -53,7 +57,7 @@ public class AlgorithmDaoImpl implements AlgorithmDao {
 		}, idHolder);
 		return idHolder.getKey().intValue();
 	}
-	
+
 	@Override
 	public Algorithm read(Integer algorithmId) throws DataAccessException {
 		Algorithm algorithm = jdbcTemplate.queryForObject(SQL_ALGORITHM_READ, 
@@ -67,16 +71,16 @@ public class AlgorithmDaoImpl implements AlgorithmDao {
 				BeanPropertyRowMapper.newInstance(Algorithm.class));
 		return algorithms;
 	}
-	
+
 	@Override
 	public void update(Algorithm algorithm) throws DataAccessException {
 		int rowsUpdated = jdbcTemplate.update(SQL_ALGORITHM_UPDATE, new Object[] {
 				algorithm.getName(), algorithm.getDesignerName(), algorithm.getDigestLengthBits(),
 				algorithm.getDescription(), algorithm.getAlgorithmId()});
 		if(rowsUpdated != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_UPDATE_INCORRECT_RESULT_SIZE, 1, 
-					Algorithm.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_UPDATE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, Algorithm.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 
@@ -84,9 +88,9 @@ public class AlgorithmDaoImpl implements AlgorithmDao {
 	public void delete(Integer algorithmId) throws DataAccessException {
 		int rowsDeleted = jdbcTemplate.update(SQL_ALGORITHM_DELETE, algorithmId);
 		if(rowsDeleted != 1) {
-			throw new IncorrectResultSizeDataAccessException(String.format(
-					ExceptionMessage.RECORD_DELETE_INCORRECT_RESULT_SIZE, 1,
-					Algorithm.class.getSimpleName(), getClass().getSimpleName(), 0), 1, 0);
+			String errorMsg = resources.getErrorMessage(ErrorCodes.RECORD_DELETE_INCORRECT_RESULT_SIZE,
+					new Object[]{1, Algorithm.class.getSimpleName(), getClass().getSimpleName(), 0});
+			throw new IncorrectResultSizeDataAccessException(errorMsg, 1, 0);
 		}
 	}
 }
