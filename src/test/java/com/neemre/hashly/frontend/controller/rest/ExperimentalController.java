@@ -6,13 +6,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.neemre.hashly.backend.domain.reference.enums.EntityTypes;
 import com.neemre.hashly.backend.domain.reference.enums.EventTypes;
@@ -34,21 +37,24 @@ public class ExperimentalController {
 	
 	
 	@ResponseBody
-	@RequestMapping(value = "/events/{eventId}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/events/{eventId}", method = RequestMethod.GET, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public EventDto getEvent(@PathVariable(value = "eventId") Long eventId) {
 		EventDto outEventDto = eventService.findById(eventId);
 		return outEventDto;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/events", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/events", method = RequestMethod.GET, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public List<EventDto> getAllEvents() {
 		List<EventDto> outEventDtos = eventService.findAll();
 		return outEventDtos;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/events", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/events", method = RequestMethod.POST, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public EventDto addNewEvent(HttpServletRequest request, @RequestBody Object[] srcItems) {
 		EventDto outEventDto = eventService.addNewEvent(EventTypes.valueOf(srcItems[0].toString()),
 				Long.parseLong(srcItems[1].toString()), EntityTypes.valueOf(srcItems[2].toString()),
@@ -57,7 +63,8 @@ public class ExperimentalController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/event-types", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/event-types", method = RequestMethod.GET, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public List<EventTypeDto> getAllEventTypes(
 			@RequestParam(value = "code", required = false) String code) {
 		List<EventTypeDto> outEventTypeDtos = new ArrayList<EventTypeDto>();
@@ -70,7 +77,8 @@ public class ExperimentalController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/entity-types", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/entity-types", method = RequestMethod.GET, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public List<EntityTypeDto> getAllEntityTypes(
 			@RequestParam(value = "code", required = false) String code) {
 		List<EntityTypeDto> outEntityTypeDtos = new ArrayList<EntityTypeDto>();

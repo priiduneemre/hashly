@@ -29,21 +29,24 @@ public class GuestController {
 	
 
 	@ResponseBody
-	@RequestMapping(value = "/{guestId}", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/{guestId}", method = RequestMethod.GET, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public GuestDto getGuest(@PathVariable(value = "guestId") int guestId) {
 		GuestDto outGuestDto = guestService.findById(guestId);
 		return outGuestDto;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "", method = RequestMethod.GET, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public List<GuestDto> getAllGuests() {
 		List<GuestDto> outGuestDtos = guestService.findAll();
 		return outGuestDtos;
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "", method = RequestMethod.POST, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public GuestDto addNewGuest(HttpServletRequest request, @RequestBody GuestDto inGuestDto) {
 		//inGuestDto.setIpAddress(request.getRemoteAddr());		//Comment out during: DEVELOPMENT-TIME
 		GuestDto outGuestDto = guestService.addNewGuest(inGuestDto);
@@ -53,7 +56,8 @@ public class GuestController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/{guestId}/visitCount", method = RequestMethod.PUT, produces = "application/json; charset=UTF-8")
+	@RequestMapping(value = "/{guestId}/visits/count", method = RequestMethod.PUT, 
+			consumes = "application/json; charset=UTF-8", produces = "application/json; charset=UTF-8")
 	public void updateGuestVisitCount(HttpServletRequest request, 
 			@PathVariable(value = "guestId") Integer guestId, @RequestBody Integer incrementBy) {
 		guestService.updateGuestVisitCount(guestId, incrementBy);

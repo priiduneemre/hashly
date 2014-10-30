@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.inspiresoftware.lib.dto.geda.annotations.Dto;
 import com.inspiresoftware.lib.dto.geda.annotations.DtoField;
 
@@ -13,6 +14,7 @@ import com.inspiresoftware.lib.dto.geda.annotations.DtoField;
 @Data
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = false)
+@JsonPropertyOrder({"eventId", "eventType", "sourceItemId", "entityType", "guest", "occurredAt"})
 public class EventDto extends EntityDto {
 
 	@DtoField(value = "eventId", readOnly = true)

@@ -57,11 +57,22 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>RestExceptionHandler</display-name>
+		<servlet-name>RestExceptionHandler</servlet-name>
+		<servlet-class>com.neemre.hashly.frontend.controller.rest.RestExceptionHandler</servlet-class>
+	</servlet>
 
 	<!--Map all incoming requests to the GeneralDispatcher servlet for handling -->
 	<servlet-mapping>
 		<servlet-name>GeneralDispatcher</servlet-name>
 		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RestExceptionHandler</servlet-name>
+		<url-pattern>/RestExceptionHandler</url-pattern>
 	</servlet-mapping>
 
 </web-app>
